@@ -319,6 +319,360 @@
           }
         }
       }
+    },
+    "toko-buku": {
+      "root": "apps/toko-buku/",
+      "sourceRoot": "apps/toko-buku/src",
+      "projectType": "application",
+      "prefix": "rusmanwahab",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/toko-buku",
+            "index": "apps/toko-buku/src/index.html",
+            "main": "apps/toko-buku/src/main.ts",
+            "polyfills": "apps/toko-buku/src/polyfills.ts",
+            "tsConfig": "apps/toko-buku/tsconfig.app.json",
+            "assets": [
+              "apps/toko-buku/src/favicon.ico",
+              "apps/toko-buku/src/assets"
+            ],
+            "styles": ["apps/toko-buku/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/toko-buku/src/environments/environment.ts",
+                  "with": "apps/toko-buku/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "toko-buku:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "toko-buku:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "toko-buku:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/toko-buku/tsconfig.app.json",
+              "apps/toko-buku/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/toko-buku/jest.config.js",
+            "tsConfig": "apps/toko-buku/tsconfig.spec.json",
+            "setupFile": "apps/toko-buku/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "toko-buku-e2e": {
+      "root": "apps/toko-buku-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/toko-buku-e2e/cypress.json",
+            "tsConfig": "apps/toko-buku-e2e/tsconfig.e2e.json",
+            "devServerTarget": "toko-buku:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "toko-buku:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/toko-buku-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "pengarsipan-surat": {
+      "root": "apps/pengarsipan-surat/",
+      "sourceRoot": "apps/pengarsipan-surat/src",
+      "projectType": "application",
+      "prefix": "rusmanwahab",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/pengarsipan-surat",
+            "index": "apps/pengarsipan-surat/src/index.html",
+            "main": "apps/pengarsipan-surat/src/main.ts",
+            "polyfills": "apps/pengarsipan-surat/src/polyfills.ts",
+            "tsConfig": "apps/pengarsipan-surat/tsconfig.app.json",
+            "assets": [
+              "apps/pengarsipan-surat/src/favicon.ico",
+              "apps/pengarsipan-surat/src/assets"
+            ],
+            "styles": ["apps/pengarsipan-surat/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pengarsipan-surat/src/environments/environment.ts",
+                  "with": "apps/pengarsipan-surat/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "pengarsipan-surat:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pengarsipan-surat:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pengarsipan-surat:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pengarsipan-surat/tsconfig.app.json",
+              "apps/pengarsipan-surat/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/pengarsipan-surat/jest.config.js",
+            "tsConfig": "apps/pengarsipan-surat/tsconfig.spec.json",
+            "setupFile": "apps/pengarsipan-surat/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "pengarsipan-surat-e2e": {
+      "root": "apps/pengarsipan-surat-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/pengarsipan-surat-e2e/cypress.json",
+            "tsConfig": "apps/pengarsipan-surat-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pengarsipan-surat:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pengarsipan-surat:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/pengarsipan-surat-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "rental-mobil": {
+      "root": "apps/rental-mobil/",
+      "sourceRoot": "apps/rental-mobil/src",
+      "projectType": "application",
+      "prefix": "rusmanwahab",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/rental-mobil",
+            "index": "apps/rental-mobil/src/index.html",
+            "main": "apps/rental-mobil/src/main.ts",
+            "polyfills": "apps/rental-mobil/src/polyfills.ts",
+            "tsConfig": "apps/rental-mobil/tsconfig.app.json",
+            "assets": [
+              "apps/rental-mobil/src/favicon.ico",
+              "apps/rental-mobil/src/assets"
+            ],
+            "styles": ["apps/rental-mobil/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/rental-mobil/src/environments/environment.ts",
+                  "with": "apps/rental-mobil/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "rental-mobil:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "rental-mobil:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "rental-mobil:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/rental-mobil/tsconfig.app.json",
+              "apps/rental-mobil/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/rental-mobil/jest.config.js",
+            "tsConfig": "apps/rental-mobil/tsconfig.spec.json",
+            "setupFile": "apps/rental-mobil/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "rental-mobil-e2e": {
+      "root": "apps/rental-mobil-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/rental-mobil-e2e/cypress.json",
+            "tsConfig": "apps/rental-mobil-e2e/tsconfig.e2e.json",
+            "devServerTarget": "rental-mobil:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rental-mobil:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/rental-mobil-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
