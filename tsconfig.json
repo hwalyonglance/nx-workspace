@@ -15,7 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@rusmanwahab/api-interface": ["libs/api-interface/src/index.ts"]
+			"@rusmanwahab/rusmanwahab-api-interface": ["libs/rusmanwahab-api-interface/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

@@ -1,24 +1,30 @@
 {
-	"npmScope": "rusmanwahab",
-	"implicitDependencies": {
-		"angular.json": "*",
-		"package.json": "*",
-		"tsconfig.json": "*",
-		"tslint.json": "*",
-		"nx.json": "*"
-	},
-	"projects": {
-		"rusmanwahab": {
-			"tags": []
-		},
-		"rusmanwahab-e2e": {
-			"tags": []
-		},
-		"api": {
-			"tags": []
-		},
-		"api-interface": {
-			"tags": []
-		}
-	}
+  "npmScope": "rusmanwahab",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "rusmanwahab": {
+      "tags": []
+    },
+    "rusmanwahab-e2e": {
+      "tags": []
+    },
+    "rusmanwahab-api": {
+      "tags": []
+    },
+    "rusmanwahab-api-interface": {
+      "tags": []
+    },
+    "pengolahan-nilai": {
+      "tags": ["pengolahan-nilai"]
+    },
+    "pengolahan-nilai-e2e": {
+      "tags": []
+    }
+  }
 }
