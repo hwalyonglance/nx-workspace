@@ -3,11 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { Message } from "@rusmanwahab/api-interface";
 
 @Component({
-  selector: "rusmanwahab-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+	selector: "rusmanwahab-root",
+	templateUrl: "./app.component.html",
+	styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>("/api/hello");
-  constructor(private http: HttpClient) {}
+	hello$ = this.http.get<Message>("/api/hello");
+	constructor(private http: HttpClient) {}
 }
