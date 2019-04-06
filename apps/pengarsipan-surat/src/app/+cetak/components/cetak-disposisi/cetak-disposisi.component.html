@@ -1,0 +1,36 @@
+<cetak-header>DISPOSISI</cetak-header>
+<table *ngIf='disposisi' style='clear: both; width: 100%; border-collapse: collapse;' cellpadding='16px'>
+	<colgroup style='width: 200px'></colgroup>
+	<tbody>
+		<tr>
+			<td>Tanggal Terima</td>
+			<td>:</td>
+			<td>{{ formatWaktu(disposisi.$surat.tglTerima) }}</td>
+		</tr>
+		<tr>
+			<td>No. Surat</td>
+			<td>:</td>
+			<td>{{ disposisi.$surat.noSurat }}</td>
+		</tr>
+		<tr>
+			<td>Pengirim</td>
+			<td>:</td>
+			<td>{{ disposisi.$surat.pengirim }}</td>
+		</tr>
+		<tr>
+			<td>Perihal</td>
+			<td>:</td>
+			<td>{{ disposisi.$surat.perihal }}</td>
+		</tr>
+		<tr>
+			<td>Kepada</td>
+			<td>:</td>
+			<td>{{ disposisi.$surat.kepada }}</td>
+		</tr>
+		<tr>
+			<td colspan='3' style='text-align: center;'>
+				<img [src]='disposisi.$surat.photo.base64' style='margin: 0 auto'>
+			</td>
+		</tr>
+	</tbody>
+</table>

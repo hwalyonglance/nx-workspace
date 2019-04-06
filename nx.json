@@ -21,19 +21,25 @@
       "tags": []
     },
     "pengolahan-nilai": {
-      "tags": ["pengolahan-nilai"]
+      "tags": [
+        "pengolahan-nilai"
+      ]
     },
     "pengolahan-nilai-e2e": {
       "tags": []
     },
     "toko-buku": {
-      "tags": ["toko-buku"]
+      "tags": [
+        "toko-buku"
+      ]
     },
     "toko-buku-e2e": {
       "tags": []
     },
     "pengarsipan-surat": {
-      "tags": ["pengarsipan-surat"]
+      "tags": [
+        "pengarsipan-surat"
+      ]
     },
     "pengarsipan-surat-e2e": {
       "tags": []
@@ -43,6 +49,11 @@
     },
     "rental-mobil-e2e": {
       "tags": []
+    },
+    "toko-buku-server": {
+      "tags": [
+        "toko-buku-server"
+      ]
     }
   }
 }

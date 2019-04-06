@@ -1,0 +1,36 @@
+<cetak-header>SURAT KELUAR</cetak-header>
+<table *ngIf='surat' style='clear: both; width: 100%; border-collapse: collapse;' cellpadding='16px'>
+	<colgroup style='width: 200px'></colgroup>
+	<tbody>
+		<tr>
+			<td>Tanggal Kirim</td>
+			<td>:</td>
+			<td>{{ formatWaktu(surat.tglKirim) }}</td>
+		</tr>
+		<tr>
+			<td>No. Surat</td>
+			<td>:</td>
+			<td>{{ surat.noSurat }}</td>
+		</tr>
+		<tr>
+			<td>Pengirim</td>
+			<td>:</td>
+			<td>{{ surat.pengirim }}</td>
+		</tr>
+		<tr>
+			<td>Perihal</td>
+			<td>:</td>
+			<td>{{ surat.perihal }}</td>
+		</tr>
+		<tr>
+			<td>Kepada</td>
+			<td>:</td>
+			<td>{{ surat.kepada }}</td>
+		</tr>
+		<tr>
+			<td colspan='3' style='text-align: center;'>
+				<img [src]='surat.photo.base64' style='margin: 0 auto'>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,59 @@
+<div fxLayout='column' fxLayoutGap='16px' style='overflow-x: hidden;overflow-y: scroll; height: 80vh; padding: 16px' tabindex='-1'>
+	<div fxFlex>
+		<h4 class='center'>Lengkapi data Surat Masuk</h4>
+		<surat-form #SuratForm tabel='masuk' [inDisposisi]='true'></surat-form>
+	</div>
+	<div fxFlex>
+		<h4 class='center'>Lengkapi data Pegawai</h4>
+		<x-akun-form #AkunForm [inDisposisi]='true'></x-akun-form>
+	</div>
+	<div fxFlex>
+		<h4 class='center'>Lengkapi data Disposisi</h4>
+		<mat-card>
+			<mat-card-content>
+				<form [formGroup]='disposisiForm' fxLayout='row' fxLayoutGap='16px'>
+					<div fxFlex fxLayout='column'>
+						<div fxFlex>
+							<mat-form-field class='full-width'>
+								<input formControlName='no' matInput name='no' [maxLength]='_$Rules.no.maxLength' placeholder='Nomor Disposisi' required>
+								<mat-hint align='end'>{{ value.no.toString().length }}/{{ _$Rules.no.maxLength }}</mat-hint>
+							</mat-form-field>
+						</div>
+						<div fxFlex>
+							<mat-form-field class='full-width'>
+								<input formControlName='statusSurat' matInput [maxLength]='_$Rules.statusSurat.maxLength' name='statusSurat' placeholder='Status Surat' required>
+								<mat-hint align='end'>{{ value.statusSurat.length }}/{{ _$Rules.statusSurat.maxLength }}</mat-hint>
+							</mat-form-field>
+						</div>
+					</div>
+					<div fxFlex fxLayout='column'>
+						<div fxFlex>
+							<mat-form-field class='full-width'>
+								<textarea formControlName='keterangan' matAutosizeMaxRows='4' matInput matTextareaAutosize [maxLength]='_$Rules.keterangan.maxLength' name='keterangan' placeholder='Keterangan'></textarea>
+								<mat-hint align='end'>{{ value.keterangan.length }}/{{ _$Rules.keterangan.maxLength }}</mat-hint>
+								<!-- <input formControlName='keterangan' matInput name='keterangan' placeholder='Keterangan'> -->
+							</mat-form-field>
+						</div>
+						<div fxFlex>
+							<mat-form-field class='full-width'>
+								<textarea formControlName='tanggapan' matAutosizeMaxRows='4' matInput matTextareaAutosize [maxLength]='_$Rules.tanggapan.maxLength' name='tanggapan' placeholder='Tanggapan' required></textarea>
+								<mat-hint align='end'>{{ value.tanggapan.length }}/{{ _$Rules.tanggapan.maxLength }}</mat-hint>
+								<!-- <input formControlName='tanggapan' matInput name='tanggapan' placeholder='Tanggapan'> -->
+							</mat-form-field>
+						</div>
+						<!-- <div fxFlex>
+							{{ SuratForm.valid }} <br>
+							{{ SuratForm.suratForm.errors | json }} <br><br><br>
+							{{ AkunForm.valid }} <br>
+							{{ disposisiForm.valid }} <br>
+						</div> -->
+					</div>
+				</form>
+			</mat-card-content>
+			<mat-card-actions align='end'>
+				<button (click)='submit()' color='primary' [disabled]='!valid && loading' mat-raised-button>Simpan</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>
+<mat-progress-bar *ngIf='loading' color='primary' mode='indeterminate'></mat-progress-bar>

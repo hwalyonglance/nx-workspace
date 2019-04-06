@@ -24,9 +24,12 @@
             "tsConfig": "apps/rusmanwahab/tsconfig.app.json",
             "assets": [
               "apps/rusmanwahab/src/favicon.ico",
-              "apps/rusmanwahab/src/assets"
+              "apps/rusmanwahab/src/assets",
+              "apps/rusmanwahab/src/manifest.json"
             ],
-            "styles": ["apps/rusmanwahab/src/styles.scss"],
+            "styles": [
+              "apps/rusmanwahab/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -53,7 +56,9 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/rusmanwahab/ngsw-config.json"
             }
           }
         },
@@ -82,7 +87,9 @@
               "apps/rusmanwahab/tsconfig.app.json",
               "apps/rusmanwahab/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -117,7 +124,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/rusmanwahab-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -135,7 +144,9 @@
             "outputPath": "dist/apps/rusmanwahab-api",
             "main": "apps/rusmanwahab-api/src/main.ts",
             "tsConfig": "apps/rusmanwahab-api/tsconfig.app.json",
-            "assets": ["apps/rusmanwahab-api/src/assets"]
+            "assets": [
+              "apps/rusmanwahab-api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -164,7 +175,9 @@
               "apps/rusmanwahab-api/tsconfig.app.json",
               "apps/rusmanwahab-api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -189,7 +202,9 @@
               "libs/rusmanwahab-api-interface/tsconfig.lib.json",
               "libs/rusmanwahab-api-interface/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -225,7 +240,9 @@
               "apps/pengolahan-nilai/src/favicon.ico",
               "apps/pengolahan-nilai/src/assets"
             ],
-            "styles": ["apps/pengolahan-nilai/src/styles.scss"],
+            "styles": [
+              "apps/pengolahan-nilai/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -252,7 +269,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -280,7 +298,9 @@
               "apps/pengolahan-nilai/tsconfig.app.json",
               "apps/pengolahan-nilai/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -315,7 +335,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/pengolahan-nilai-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -343,7 +365,9 @@
               "apps/toko-buku/src/favicon.ico",
               "apps/toko-buku/src/assets"
             ],
-            "styles": ["apps/toko-buku/src/styles.scss"],
+            "styles": [
+              "apps/toko-buku/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -370,14 +394,16 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "toko-buku:build"
+            "browserTarget": "toko-buku:build",
+            "proxyConfig": "apps/toko-buku//proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -398,7 +424,9 @@
               "apps/toko-buku/tsconfig.app.json",
               "apps/toko-buku/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -433,7 +461,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/toko-buku-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -461,7 +491,9 @@
               "apps/pengarsipan-surat/src/favicon.ico",
               "apps/pengarsipan-surat/src/assets"
             ],
-            "styles": ["apps/pengarsipan-surat/src/styles.scss"],
+            "styles": [
+              "apps/pengarsipan-surat/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -488,7 +520,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -516,7 +549,9 @@
               "apps/pengarsipan-surat/tsconfig.app.json",
               "apps/pengarsipan-surat/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -551,7 +586,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/pengarsipan-surat-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -579,7 +616,9 @@
               "apps/rental-mobil/src/favicon.ico",
               "apps/rental-mobil/src/assets"
             ],
-            "styles": ["apps/rental-mobil/src/styles.scss"],
+            "styles": [
+              "apps/rental-mobil/src/styles.scss"
+            ],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -606,7 +645,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -634,7 +674,9 @@
               "apps/rental-mobil/tsconfig.app.json",
               "apps/rental-mobil/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -669,7 +711,67 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/rental-mobil-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "toko-buku-server": {
+      "root": "apps/toko-buku-server",
+      "sourceRoot": "apps/toko-buku-server/src",
+      "projectType": "application",
+      "prefix": "toko-buku-server",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "outputPath": "dist/apps/toko-buku-server",
+            "main": "apps/toko-buku-server/src/main.ts",
+            "tsConfig": "apps/toko-buku-server/tsconfig.app.json",
+            "assets": [
+              "apps/toko-buku-server/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/toko-buku-server/src/environments/environment.ts",
+                  "with": "apps/toko-buku-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "toko-buku-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/toko-buku-server/tsconfig.app.json",
+              "apps/toko-buku-server/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/toko-buku-server/jest.config.js",
+            "tsConfig": "apps/toko-buku-server/tsconfig.spec.json"
           }
         }
       }

@@ -1,0 +1,8 @@
+<mat-toolbar color='primary'>
+	Simpan Data ini?
+</mat-toolbar>
+<div class='pad-8px' fxLayout>
+	<span fxFlex></span>
+	<button (click)='on.next("close")' fxFlex mat-button matTooltip='Kembali'><mat-icon>close</mat-icon></button>
+	<button (click)='on.next("confirmed")' color='warn' fxFlex mat-button matTooltip='Simpan'><mat-icon>check</mat-icon></button>
+</div>

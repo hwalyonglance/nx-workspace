@@ -1,0 +1,11 @@
+<mat-toolbar color='primary'>
+	Hapus {{ _$dialogData.jenis }} ini?
+</mat-toolbar>
+<div style='padding: 32px'>
+	Data tidak bisa dikembalikan setelah dihapus!
+</div>
+<div class='pad-8px' fxLayout>
+	<span fxFlex></span>
+	<button (click)='$on$.next("O")' color='warn' fxFlex mat-raised-button matTooltip='Hapus'><mat-icon>delete_forever</mat-icon></button>
+	<button (click)='$on$.next("X")' fxFlex mat-raised-button matTooltip='Batal'><mat-icon>cancel</mat-icon></button>
+</div>

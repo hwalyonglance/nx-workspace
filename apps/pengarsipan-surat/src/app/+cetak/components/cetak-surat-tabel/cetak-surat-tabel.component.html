@@ -1,0 +1,25 @@
+<cetak-header>SURAT KELUAR</cetak-header>
+<table border='1' style='clear: both; width: 100%; border-collapse: collapse;' cellpadding='16px'>
+	<colgroup style='width: 24px'></colgroup>
+	<colgroup style='width: 180px'></colgroup>
+	<thead style=''>
+		<tr>
+			<th>No.</th>
+			<th>Tgl. Kirim</th>
+			<th>No. Surat</th>
+			<th>Pengirim</th>
+			<th>Perihal</th>
+			<th>Kepada</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor='let surat of Surat$_; let i = index'>
+			<td>{{ i+1 }}.</td>
+			<td>{{ formatWaktu(surat.tglKirim) }}</td>
+			<td>{{ surat.noSurat }}</td>
+			<td>{{ surat.pengirim }}</td>
+			<td>{{ surat.perihal }}</td>
+			<td>{{ surat.kepada }}</td>
+		</tr>
+	</tbody>
+</table>

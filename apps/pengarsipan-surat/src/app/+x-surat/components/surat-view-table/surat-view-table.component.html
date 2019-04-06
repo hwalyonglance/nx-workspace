@@ -1,0 +1,87 @@
+<mat-card>
+	<mat-card-content>
+		<mat-toolbar>
+			<button mat-icon-button [matMenuTriggerFor]='matMenu_toolbar'><mat-icon>more_vert</mat-icon></button>
+			<mat-menu #matMenu_toolbar='matMenu' xPosition='after'>
+				<button mat-menu-item (click)='tambah()'>
+					<mat-icon>add</mat-icon>
+					Tambah
+				</button>
+				<button mat-menu-item (click)='bukaFormReport()'>
+					<mat-icon>print</mat-icon>
+					Cetak
+				</button>
+			</mat-menu>
+			<h5>Surat {{ _tabel }}</h5>
+			<span fxFlex='auto'></span>
+			<mat-form-field floatPlaceholder='never' fxFlex='200px'>
+				<input #filter matInput placeholder='Cari'>
+			</mat-form-field>
+		</mat-toolbar>
+		<mat-table [dataSource]='matTableDataSource_Surat' dense matSort>
+			<mat-header-row *matHeaderRowDef='columnToDisplay'></mat-header-row>
+			<mat-row *matRowDef='let row; columns: columnToDisplay;' [style.borderBottomColor]="$surat == row ? 'transparent' : ''"></mat-row>
+			<ng-container matColumnDef='id'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Kode Surat </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.id}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='no'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Nomor Surat </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.no}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='noAgenda'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Nomor Agenda </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.noAgenda}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='jenisSurat'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Jenis </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.jenisId}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='tglKirim'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Tanggal Kirim </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{formatWaktu(row.tglKirim)}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='tglTerima'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Tanggal Terima </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{formatWaktu(row.tglTerima)}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='pengirim'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Pengirim </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.pengirim}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='perihal'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Perihal </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.perihal}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='createdAt'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Dibuat Pada </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.createdAt}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='updatedAt'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Diperbarui Pada </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.updatedAt}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='actions'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+				<mat-cell *matCellDef='let row'>
+					<button mat-icon-button [matMenuTriggerFor]='matMenu_rowAction'><mat-icon>more_vert</mat-icon></button>
+					<mat-menu #matMenu_rowAction='matMenu' xPosition='before'>
+						<button (click)='ubah(row)' mat-menu-item>
+							<mat-icon>mode_edit</mat-icon>
+							Perbarui
+						</button>
+						<button (click)='cetak(row.id)' mat-menu-item>
+							<mat-icon>print</mat-icon>
+							Cetak
+						</button>
+						<button (click)='hapus(row.id)' mat-menu-item>
+							<mat-icon>delete</mat-icon>
+							Hapus
+						</button>
+					</mat-menu>
+				</mat-cell>
+			</ng-container>
+		</mat-table>
+		<mat-paginator color='accent' #paginator [length]='matTableDataSource_Surat.data.length' [pageIndex]='0' [pageSize]='10' [pageSizeOptions]='[10, 25, 50, 100]'></mat-paginator>
+	</mat-card-content>
+</mat-card>

@@ -1,0 +1,10 @@
+<div class='img-view' fxLayout='column' fxLayoutAlign='center center'>
+	<div (click)='chooseFile()' class='pointer' fxFlex='80%'>
+		<img class='tiga00px' #preview>
+	</div>
+	<div (click)='chooseFile()' [fxShow]='showButton' fxFlex>
+		<button mat-button color='primary' type='button'>
+			{{ label }} Foto
+		</button>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<cetak-header>SURAT KELUAR</cetak-header>
+<table border='1' style='clear: both; width: 100%; border-collapse: collapse;' cellpadding='16px'>
+	<colgroup style='width: 24px'></colgroup>
+	<colgroup style='width: 180px'></colgroup>
+	<thead style=''>
+		<tr>
+			<th>No.</th>
+			<th>Tgl. Terima</th>
+			<th>No. Surat</th>
+			<th>Pengirim</th>
+			<th>Perihal</th>
+			<th>Kepada</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor='let disposisi of Data$_; let i = index'>
+			<td>{{ i+1 }}.</td>
+			<td>{{ formatWaktu(disposisi.$surat.tglTerima) }}</td>
+			<td>{{ disposisi.$surat.noSurat }}</td>
+			<td>{{ disposisi.$surat.pengirim }}</td>
+			<td>{{ disposisi.$surat.perihal }}</td>
+			<td>{{ disposisi.$surat.kepada }}</td>
+		</tr>
+	</tbody>
+</table>

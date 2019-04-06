@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc/apps/toko-buku-server",
+    "module": "commonjs",
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}
