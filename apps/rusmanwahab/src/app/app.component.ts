@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Message } from "@rusmanwahab/api-interface";
+import { Message } from "@rusmanwahab/rusmanwahab-api-interface";
 
 @Component({
 	selector: "rusmanwahab-root",
