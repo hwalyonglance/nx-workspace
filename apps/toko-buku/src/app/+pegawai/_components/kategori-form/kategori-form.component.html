@@ -1,0 +1,19 @@
+<mat-toolbar color='primary'>
+	<span fxFlex>{{ $aksi }} Kategori</span>
+	<span class='flex-auto'></span>
+	<button (click)='$event$.next("tutup")' color='accent' fxFlex='40px' mat-button mat-icon-button mat-raised-button matTooltip='Tutup Form'><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+<mat-card>
+	<mat-card-content>
+		<form [formGroup]='kategoriForm' fxLayout='column'>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='kategori' matInput name='kategori' placeholder='Kategori' required>
+				</mat-form-field>
+			</div>
+		</form>
+	</mat-card-content>
+	<mat-card-actions align='end'>
+		<button (click)='simpan()' color='primary' [disabled]='!valid' mat-raised-button>{{ $aksi }}</button>
+	</mat-card-actions>
+</mat-card>

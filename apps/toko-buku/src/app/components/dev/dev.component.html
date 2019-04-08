@@ -1,0 +1,13 @@
+<container>
+	<div style='margin: 64px auto; width: 95%'>
+		<div class="demo-nav-bar">
+			<nav mat-tab-nav-bar aria-label="weather navigation links" [backgroundColor]="tabNavBackground">
+				<a mat-tab-link *ngFor="let tabLink of tabLinks; let i = index" [routerLink]="tabLink.link" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+					{{tabLink.label}}
+				</a>
+				<a mat-tab-link disabled>Disabled Link</a>
+			</nav>
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</container>

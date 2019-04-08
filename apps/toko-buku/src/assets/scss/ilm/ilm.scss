@@ -1,0 +1,24 @@
+.mat-sidenav.sidenav{
+	// background-color: #009688;
+	width: 300px;
+}
+.sidenav .mat-list-item:first-of-type{
+	border-top: 1px solid #999;
+}
+.sidenav .mat-list-item{
+	// background-color: #8C9EFF;
+	color: #F5F5F5;
+	border-bottom: 1px solid #999;
+}
+.sidenav .mat-list-item.active{
+	background-color: #FFEB3B;
+	color: #333;
+}
+// .mat-toolbar.topnav{
+// 	background-color: #283593;
+// }
+.foot{
+	background-color: #3f51b5;
+	color: hsla(0,0%,100%,.87);
+	padding: 18px 0;
+}

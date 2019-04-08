@@ -33,12 +33,14 @@ export class XAuthService<HakAkses> {
 		.pipe(
 			switchMap(akun => {
 				if (akun) {
-					return this._$db.doc(akun['uid']).snapshotChanges().switchMap((a) => {
-						const id = a.payload.id;
-						const data = a.payload.data() as Akun<HakAkses>;
-						this.akun_.next({id, ...data})
-						return of({id, ...data})
-					})
+					return this._$db.doc(akun['uid']).snapshotChanges().pipe(
+						switchMap((a) => {
+							const id = a.payload.id;
+							const data = a.payload.data() as Akun<HakAkses>;
+							this.akun_.next({id, ...data})
+							return of({id, ...data})
+						})
+					);
 				}else{
 					return of(null);
 				}

@@ -1,0 +1,1 @@
+export * from './konsumen-form/konsumen-form.component';

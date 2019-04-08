@@ -1,0 +1,11 @@
+<mat-nav-list class='sidenav'>
+	<mat-list-item routerLink='/konsumen/keranjang/' routerLinkActive='active'>Konsumen Keranjang</mat-list-item>
+	<mat-list-item routerLink='/konsumen/masuk' routerLinkActive='active'>Konsumen masuk</mat-list-item>
+	<mat-list-item routerLink='/konsumen/pendaftaran' routerLinkActive='active'>Konsumen Pendaftaran</mat-list-item>
+	<mat-list-item routerLink='/pegawai/' routerLinkActive='active'>Pegawai</mat-list-item>
+	<mat-list-item routerLink='/pegawai/penerbit' routerLinkActive='active'>Pegawai Penerbit</mat-list-item>
+	<mat-list-item routerLink='/pegawai/kategori' routerLinkActive='active'>Pegawai Kategori</mat-list-item>
+	<mat-list-item routerLink='/pegawai/buku' routerLinkActive='active'>Pegawai Buku</mat-list-item>
+	<!-- <mat-list-item routerLink='/pegawai/form' routerLinkActive='active'>Pegawai Form</mat-list-item> -->
+	<mat-list-item *ngFor='let kategori of Kategori$_' routerLink='/kategori/{{ kategori.kategori }}' routerLinkActive='active'>{{ kategori.kategori }}</mat-list-item>
+</mat-nav-list>

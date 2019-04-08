@@ -1,0 +1,67 @@
+<mat-toolbar color='primary'>
+	<span fxFlex>{{ $aksi }} Buku</span>
+	<span class='flex-auto'></span>
+	<button (click)='$event$.next("tutup")' color='accent' fxFlex='40px' mat-button mat-icon-button mat-raised-button matTooltip='Tutup Form'><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+<mat-card>
+	<mat-card-content>
+		<form [formGroup]='bukuForm' fxLayout='row' fxLayoutGap='16px'>
+			<div fxFlex fxLayout='column'>
+				<div fxFlex>
+					<input-file #inputFile (change)='setGambar($event)'></input-file>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='noIsbn' matInput placeholder='No ISBN' [readonly]='_disableId' required type='number'>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<mat-select formControlName='idPenerbit' placeholder='Penerbit' required>
+							<mat-option *ngFor='let Penerbit of Penerbit$_' [value]='Penerbit.idPenerbit'> {{ Penerbit.penerbit }} </mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<mat-select formControlName='idKategori' placeholder='Kategori' required>
+							<mat-option *ngFor='let Kategori of Kategori$_' [value]='Kategori.idKategori'> {{ Kategori.kategori }} </mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>	
+			</div>
+			<div fxFlex fxLayout='column'>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='judul' matInput placeholder='Judul' required>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='tahunTerbit' [matDatepicker]='C_Mat_Datepicker_TahunTerbit' matInput placeholder='Tahun Terbit' readonly required>
+						<mat-datepicker-toggle matSuffix [for]='C_Mat_Datepicker_TahunTerbit'></mat-datepicker-toggle>
+						<mat-datepicker #C_Mat_Datepicker_TahunTerbit></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='stok' matInput max='100000' min='0' placeholder='Stok' required step='10' type='number'>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='harga' matInput max='100000' min='0' placeholder='Harga' required step='1000' type='number'>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<textarea formControlName='sinopsis' matInput matTextareaAutosize matAutosizeMaxRows='8' matAutosizeMinRows='2' placeholder='Sinopsis'></textarea>
+					</mat-form-field>
+				</div>
+			</div>
+		</form>
+	</mat-card-content>
+	<mat-card-actions align='end'>
+		<button (click)='simpan()' color='primary' [disabled]='!valid' mat-raised-button>{{ $aksi }}</button>
+	</mat-card-actions>
+</mat-card>

@@ -1,0 +1,40 @@
+<input #filter>
+<mat-table [dataSource]='keranjangMatTableDataSource' matSort role='treegrid'>
+	<mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+	<mat-row *matRowDef='let row; columns: displayedColumns;' [style.borderBottomColor]="row == $keranjang ? 'transparent' : ''"></mat-row>
+	<mat-row *matRowDef="let row; columns: ['details']; when: isDetailRow" style="height: 400px !important" 
+	[style.backgroundColor]='row == $keranjang ? "red" : "blue"'></mat-row>
+
+	<ng-container matColumnDef='nama'>
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Nama </mat-header-cell>
+		<mat-cell *matCellDef='let row'> {{ row.nama }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef='oleh'>
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Oleh </mat-header-cell>
+		<mat-cell *matCellDef='let row'> {{ row?.idPegawai ? 'Kasir' : 'Konsumen' }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef='total'>
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
+		<mat-cell *matCellDef='let row'> {{ total(row.isi) }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef='pada'>
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Pada </mat-header-cell>
+		<mat-cell *matCellDef='let row'> {{ row.updatedAt }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef='action'>
+		<mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+		<mat-cell *matCellDef='let row; let i = index'>
+			<button (click)='rowClick(row, i)' color='primary' mat-raised-button mat-icon-button matTooltip='Detail Pembelian'> <mat-icon>details</mat-icon> </button>
+			<button (click)='cetak(row.idKeranjang)' color='accent' mat-raised-button mat-icon-button matTooltip='Cetak Struk Pembelian'> <mat-icon>print</mat-icon> </button>
+		</mat-cell>
+	</ng-container>
+	<ng-container matColumnDef='details'>
+		<!-- <mat-header-cell *matHeaderCellDef mat-sort-header> Details </mat-header-cell> -->
+		<mat-cell *matCellDef='let row; let i = index'>
+			<!-- <ng-container *ngIf='row == $keranjang'> -->
+				<p>ini details {{ i }}</p>
+				<!-- <p>{{ row.nama }}</p> -->
+			<!-- </ng-container> -->
+		</mat-cell>
+	</ng-container>
+</mat-table>

@@ -3,11 +3,9 @@ import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Option
 import { MatDialog, MatDrawer, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/filter';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable, fromEvent } from 'rxjs';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 
 import { XFirebase, XFormDialog } from '../../classes';
 import { ROLES } from '../../consts';
@@ -71,8 +69,8 @@ export class XAkunViewTableComponent implements AfterViewInit, OnInit {
 		this.matTableDataSource_Akun!.sort = this.C_Mat_Sort;
 	}
 	ngOnInit() {
-		Observable.fromEvent(this.filter.nativeElement, 'keyup')
-			.distinctUntilChanged()
+		fromEvent(this.filter.nativeElement, 'keyup')
+			.pipe(distinctUntilChanged())
 			.subscribe((v) => {
 				this.C_Mat_Paginator.pageIndex = 0;
 				this.matTableDataSource_Akun.filter = this.filter.nativeElement.value;

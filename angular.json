@@ -66,6 +66,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "rusmanwahab:build",
+            "open":true,
             "proxyConfig": "apps/rusmanwahab//proxy.conf.json"
           },
           "configurations": {
@@ -165,7 +166,8 @@
         "serve": {
           "builder": "@nrwl/builders:node-execute",
           "options": {
-            "buildTarget": "rusmanwahab-api:build"
+            "buildTarget": "rusmanwahab-api:build",
+            "open":true
           }
         },
         "lint": {
@@ -277,7 +279,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pengolahan-nilai:build"
+            "browserTarget": "pengolahan-nilai:build",
+            "open":true
           },
           "configurations": {
             "production": {
@@ -403,7 +406,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "toko-buku:build",
-            "proxyConfig": "apps/toko-buku//proxy.conf.json"
+            "proxyConfig": "apps/toko-buku//proxy.conf.json",
+            "open":true
           },
           "configurations": {
             "production": {
@@ -520,15 +524,15 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ],
-              "serviceWorker": true
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pengarsipan-surat:build"
+            "browserTarget": "pengarsipan-surat:build",
+            "open":true
           },
           "configurations": {
             "production": {
@@ -645,8 +649,7 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ],
-              "serviceWorker": true
+              ]
             }
           }
         },

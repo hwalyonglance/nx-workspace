@@ -1,0 +1,19 @@
+<form [formGroup]='signInForm' fxLayout='column'>
+	<div fxFlex>
+		<mat-form-field class='full-width'>
+			<input email formControlName='email' matInput name='email' placeholder='Email' required type='email'>
+			<mat-error *ngIf=' signInForm.get("email").hasError("email") ' align='end'> Ini bukan alamat Email </mat-error>
+		</mat-form-field>
+	</div>
+	<div fxFlex>
+		{{ level }}
+	</div>
+	<div fxFlex>
+		<mat-form-field class='full-width'>
+			<input formControlName='password' matInput name='password' placeholder='Password' required [type]='_passwordType'>
+			<button mat-button mat-icon-button matSuffix>
+				<mat-icon (click)='togglePassword()' [matTooltip]='_passwordSuffixTooltip + " password"'>{{ _passwordVisibility }}</mat-icon>
+			</button>
+		</mat-form-field>
+	</div>
+</form>

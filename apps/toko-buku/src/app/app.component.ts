@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'rusmanwahab-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+	selector: 'ilm-root',
+	template: `<router-outlet></router-outlet>`,
+	styles: []
 })
-export class AppComponent {
-  title = 'toko-buku';
-}
+export class AppComponent {}

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Inject, Input, OnInit, Output, 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { includes } from 'lodash';
 
@@ -142,10 +142,10 @@ export class XAkunFormComponent implements AfterViewInit, OnInit {
 					email: akun.email,
 					password: akun.password,
 					role: this.hakAkses(akun.role)
-				})
+				});
 				// this.C_XInput.image = akun.photoURL;
 				this.C_XInput.fileExist = true;
-			}, 1)
+			}, 1);
 		}
 		this.C_XInput.$change$.subscribe((e) => {
 			this.akunForm_photo = e;
@@ -153,8 +153,8 @@ export class XAkunFormComponent implements AfterViewInit, OnInit {
 				base64: e.base64,
 				URL: this.akunForm.get('photo').value.URL,
 				name: this.akunForm.get('photo').value.name,
-			})
-		})
+			});
+		});
 	}
 	ngOnInit() {}
 	hakAkses(i: number){
@@ -173,26 +173,24 @@ export class XAkunFormComponent implements AfterViewInit, OnInit {
 			role_autocomplete:'',
 			createdAt: this.value.createdAt,
 			updatedAt: this.$_xFirebase.timestamp,
-		})
+		});
 	}
 	storePhoto(){
 		const photo = this._$db.photoAkun.uploadFile(this.akunForm_photo.files[0])
-		photo.downloadURL().subscribe((e) => {
+		// photo.downloadURL().subscribe(e => {
+		photo.snapshotChanges().subscribe(e => {
 			this.akunForm.get('photo').setValue({
 				base64: this.akunForm_photo.base64,
-				URL: e,
+				URL: e.downloadURL,
 				name: this.akunForm.get('photo').value.name
-			})
+			});
 			this.akunForm_photo.URLFinish = true;
-			console.log('URL')
 			const _akun = this.value;
 			delete _akun['email_autocomplete'];
 			delete _akun['password_match'];
 			delete _akun['role_autocomplete'];
 			this.$_xAuth.emailSignUp(_akun.email, _akun.password).then((e) => {
-				console.log('register')
 				this._$db.akun.upsert(e.uid, {..._akun, uid: e.uid}).then(() => {
-					console.log('success')
 					this.$on$.next('close');
 				})
 			})
@@ -204,8 +202,7 @@ export class XAkunFormComponent implements AfterViewInit, OnInit {
 				name: e.ref.name
 			})
 			this.akunForm_photo.nameFinish = true;
-			console.log('name')
-		})
+		});
 	}
 	submit(){
 		this.storePhoto()

@@ -1,0 +1,57 @@
+<mat-toolbar color='primary'>
+	<span fxFlex>Tambah Pegawai Baru</span>
+	<span class='flex-auto'></span>
+	<!-- <button (click)='$event$.next("tutup")' color='accent' fxFlex='40px' mat-button mat-icon-button mat-raised-button matTooltip='Tutup Form'><mat-icon>close</mat-icon></button> -->
+</mat-toolbar>
+<mat-card>
+	<mat-card-content>
+		<form [formGroup]='pegawaiForm' fxLayout='column'>
+			<div fxFlex>
+				<input-file #inputFile (change)='setPegawaiFoto($event)'></input-file>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='nama' matInput name='nama' placeholder='Nama' required>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='telepon' matInput name='telepon' placeholder='Telepon' required>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<mat-select formControlName='jenisKelamin' name='jenisKelamin' placeholder='Jenis Kelamin' required>
+						<mat-option value='Laki Laki'>Laki Laki</mat-option>
+						<mat-option value='Perempuan'>Perempuan</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input email formControlName='email' matInput name='email' placeholder='Email' required type='email'>
+					<mat-error *ngIf=' pegawaiForm.get("email").hasError("email") ' align='end'> Ini bukan alamat Email </mat-error>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='password' matInput name='password' placeholder='Password' required [type]='_passwordType'>
+					<button mat-button mat-icon-button matSuffix>
+						<mat-icon (click)='togglePassword()' [matTooltip]='_passwordSuffixTooltip + " password"'>{{ _passwordVisibility }}</mat-icon>
+					</button>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<mat-select formControlName='akses' name='akses' placeholder='Akses' required>
+						<mat-option value='Kasir'>Kasir</mat-option>
+						<mat-option value='Logistik'>Logistik</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</form>
+	</mat-card-content>
+	<mat-card-actions align='end'>
+		<button (click)='simpan()' color='primary' [disabled]='!valid' mat-raised-button>Selesai</button>
+	</mat-card-actions>
+</mat-card>

@@ -3,7 +3,8 @@ import { AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, OnInit,
 import { MatDialog, MatDrawer, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { includes } from 'lodash';
 import * as moment from 'moment';
@@ -58,8 +59,8 @@ export class JenisViewTableComponent implements AfterViewInit, OnInit {
 		this.matTableDataSource_Jenis!.sort = this.C_Mat_Sort;
 	}
 	ngOnInit() {
-		Observable.fromEvent(this.filter.nativeElement, 'keyup')
-			.distinctUntilChanged()
+		fromEvent(this.filter.nativeElement, 'keyup')
+			.pipe(distinctUntilChanged())
 			.subscribe((v) => {
 				this.C_Mat_Paginator.pageIndex = 0;
 				this.matTableDataSource_Jenis.filter = this.filter.nativeElement.value;

@@ -3,7 +3,8 @@ import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, Optional, 
 import { MatDialog, MatDrawer, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs//operators';
 
 import { includes } from 'lodash';
 import * as moment from 'moment';
@@ -85,8 +86,8 @@ export class SuratViewTableComponent implements AfterViewInit, OnInit {
 		this.matTableDataSource_Surat!.sort = this.C_Mat_Sort;
 	}
 	ngOnInit() {
-		Observable.fromEvent(this.filter.nativeElement, 'keyup')
-			.distinctUntilChanged()
+		fromEvent(this.filter.nativeElement, 'keyup')
+			.pipe(distinctUntilChanged())
 			.subscribe((v) => {
 				this.C_Mat_Paginator.pageIndex = 0;
 				this.matTableDataSource_Surat.filter = this.filter.nativeElement.value;

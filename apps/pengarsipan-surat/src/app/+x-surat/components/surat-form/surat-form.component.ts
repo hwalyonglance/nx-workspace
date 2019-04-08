@@ -144,19 +144,12 @@ export class SuratFormComponent implements AfterViewInit, OnInit {
 	}
 	storePhoto(){
 		const photo = this._$db.photoSurat.uploadFile(this.suratForm_photo.files[0])
-		photo.downloadURL().subscribe((e) => {
-			this.suratForm.get('photo').setValue({
-				base64: this.suratForm_photo.base64,
-				URL: e,
-				name: this.suratForm.get('photo').value.name
-			})
-			this.suratForm_photo.URLFinish = true;
-		})
+		// photo.downloadURL().subscribe((e) => {
 		photo.snapshotChanges().subscribe((e) => {
 			this.suratForm.get('photo').setValue({
 				base64: this.suratForm_photo.base64,
-				URL: this.suratForm.get('photo').value.URL,
-				name: e.ref.name
+				URL: e.downloadURL || this.suratForm.get('photo').value.URL,
+				name: (e.ref && e.ref.name) || this.suratForm.get('photo').value.name
 			})
 			this.suratForm_photo.nameFinish = true;
 		})

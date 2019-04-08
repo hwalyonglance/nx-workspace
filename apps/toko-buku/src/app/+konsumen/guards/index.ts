@@ -1,0 +1,1 @@
+export * from './konsumen-auth-children.guard';

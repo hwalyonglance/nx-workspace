@@ -1,1 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
+// @import '~font-awesome/css/font-awesome.min.css';
+@import './assets/iconfont/material-icons.css';
+// @import './assets/materialize.css',
+// @import './assets/scss/ilm/layout.scss';
+// @import '~animate.css/animate.min.css';
+@import '~@angular/material/theming';
+@include mat-core();
+$ilm-primary: mat-palette($mat-light-blue);
+$ilm-accent: mat-palette($mat-yellow);
+$ilm-warn: mat-palette($mat-red);
+$ilm-theme: mat-dark-theme( $ilm-primary, $ilm-accent, $ilm-warn );
+@include angular-material-theme($ilm-theme);
+
+@import './assets/scss/ilm/ilm.scss';
+// ---------------------------------
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	// transition: .5s;
+}
+
+.flex-fill{
+	flex: 1 1 fill;
+}
+
+.flex-auto{
+	flex: 1 0 auto;
+}
+
+.pointer{
+	cursor: pointer;
+}
+.full-width{
+	width: 100%;
+}
+.container, .no-padding{
+	padding: 0 !important;
+}
+
+.width-40px{
+	width: 40px !important;
+}
+
+h1, h2, h3, h4, h5, h6, .topnav, .no-margin{
+	margin: 0 !important;
+}
+h1{
+	background-color: #FF9800;
+	padding: 36px 24px;
+}
+p{
+	padding: 4px 18px;
+}
+.mat-dialog-container{
+	padding: 0 !important;
+	overflow: hidden !important;
+}
+.iil{
+	margin: 2px 8px 2px 0;
+	height: 40px;
+	width: 40px;
+	float: left;
+}
+.owit{
+	float: left;
+}
+
+.hide, .hidden{
+	display: none !important;
+}
+.mat-card-actions{
+	padding: 0 20px;
+}

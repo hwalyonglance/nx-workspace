@@ -1,0 +1,148 @@
+<mat-drawer-container>
+	<mat-drawer #C_Mat_Drawer align='end' mode='side' (open)='btnClose.focus()' style='width: 400px'>
+		<mat-toolbar color='primary'>
+			<span class='flex-auto'></span>
+			<button (click)='openBukuFormDialog("Perbarui", buku)' color='primary' mat-icon-button mat-raised-button matTooltip='Ubah Data Buku'><mat-icon>mode_edit</mat-icon></button>
+			<button (click)='remove(buku.noIsbn)' color='warn' mat-icon-button mat-raised-button matTooltip='Hapus buku'><mat-icon>delete</mat-icon></button>
+			<button #btnClose (click)='C_Mat_Drawer.close()' color='accent' mat-icon-button mat-raised-button matTooltip='Tutup'><mat-icon>close</mat-icon></button>
+		</mat-toolbar>
+		<table class='browser-default' style='width: 100%'>
+			<tr>
+				<td colspan="2">
+					<img [src]="buku.gambar" style='max-height: 350px;width: 100%'>
+				</td>
+			</tr>
+			<tr>
+				<td>No. ISBN</td>
+				<td>{{ buku.noIsbn }}</td>
+			</tr>
+			<tr>
+				<td>Nama</td>
+				<td>{{ buku.judul }}</td>
+			</tr>
+			<tr>
+				<td>Penerbit</td>
+				<td>{{ buku.$penerbit?.penerbit }}</td>
+			</tr>
+			<tr>
+				<td>Penulis</td>
+				<td>{{ buku.$penerbit?.penulis }}</td>
+			</tr>
+			<tr>
+				<td>Kategori</td>
+				<td>{{ buku.$kategori?.kategori }}</td>
+			</tr>
+			<tr>
+				<td>Terbit pada</td>
+				<td>{{ buku.tahunTerbit }}</td>
+			</tr>
+			<tr>
+				<td>Harga</td>
+				<td>{{ buku.harga | currency:'IDR' }}</td>
+			</tr>
+			<tr>
+				<td>Stok</td>
+				<td>{{ buku.stok }}</td>
+			</tr>
+			<tr>
+				<td>Sinopsis</td>
+				<td>{{ buku.sinopsis }}</td>
+			</tr>
+		</table>
+	</mat-drawer>
+	<mat-drawer-content>
+		<mat-card>
+			<mat-card-content>
+				<mat-toolbar color='primary'>
+					<button [matMenuTriggerFor]='C_Mat_Menu_Tabel' mat-button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+					<mat-menu #C_Mat_Menu_Tabel='matMenu' [overlapTrigger]='true'>
+						<button (click)='openBukuFormDialog("Tambahkan")' mat-menu-item><mat-icon>add</mat-icon> Tambah</button>
+					</mat-menu>
+					<mat-form-field class='full-width' color='accent' floatPlaceholder='never'>
+						<input #filter matInput placeholder="Cari buku">
+					</mat-form-field>
+				</mat-toolbar>
+				<mat-table #table [dataSource]='bukuMatTableDataSource' matSort>
+					<mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+					<mat-row *matRowDef='let row; columns: displayedColumns;' (click)='C_Mat_Drawer.open();btnClose.focus();buku = row' [style.borderBottomColor]="expandedBuku == row ? 'transparent' : ''"></mat-row>
+					<ng-container matColumnDef="details">
+						<mat-cell *matCellDef="let row">
+							<ng-container *ngIf="wasExpanded.has(row.data)">
+								<table>
+									<colgroup width='150px'></colgroup>
+									<tr>
+										<td colspan="2" style="padding: 5px;">
+											<img [src]="row.data.gambar" style='max-width: 350px;align-self: center; justify-self: center;'>
+										</td>
+									</tr>
+									<tr>
+										<td>No. ISBN</td>
+										<td>{{ row.data.noIsbn }}</td>
+									</tr>
+									<tr>
+										<td>Nama</td>
+										<td>{{ row.data.judul }}</td>
+									</tr>
+									<tr>
+										<td>Penerbit</td>
+										<td>{{ row.data.$penerbit.nama }}</td>
+									</tr>
+									<tr>
+										<td>Kategori</td>
+										<td>{{ row.data.$kategori.kategori }}</td>
+									</tr>
+									<tr>
+										<td>Terbit pada</td>
+										<td>{{ row.data.tahunTerbit }}</td>
+									</tr>
+									<tr>
+										<td>Harga</td>
+										<td>{{ row.data.harga | currency:'IDR' }}</td>
+									</tr>
+									<tr>
+										<td>Stok</td>
+										<td>{{ row.data.stok }}</td>
+									</tr>
+								</table>
+							</ng-container>
+						</mat-cell>
+					</ng-container>
+					<ng-container matColumnDef='noIsbn'>
+						<mat-header-cell *matHeaderCellDef mat-sort-header> No. ISBN </mat-header-cell>
+						<mat-cell *matCellDef='let row'> {{row.noIsbn}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef='gambar'>
+						<mat-header-cell *matHeaderCellDef> Gambar </mat-header-cell>
+						<mat-cell *matCellDef='let row'>
+							<img [src]='row.gambar' style='max-height: 50px;max-width: 50px;align-self: center; justify-self: center;'>
+						</mat-cell>
+					</ng-container>
+					<ng-container matColumnDef='judul'>
+						<mat-header-cell *matHeaderCellDef mat-sort-header> Judul </mat-header-cell>
+						<mat-cell *matCellDef='let row'> {{row.judul}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef='stok'>
+						<mat-header-cell *matHeaderCellDef mat-sort-header> Stok </mat-header-cell>
+						<mat-cell *matCellDef='let row'> {{row.stok}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef='harga'>
+						<mat-header-cell *matHeaderCellDef mat-sort-header> Harga </mat-header-cell>
+						<mat-cell *matCellDef='let row'> {{row.harga|currency:'IDR'}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef='action'>
+						<mat-header-cell *matHeaderCellDef> Tindakan </mat-header-cell>
+						<mat-cell *matCellDef='let row'>
+							<!-- <button (click)="rowClick(row)" color='primary' mat-raised-button mat-icon-button matTooltip='Detail buku'>
+								<mat-icon>details</mat-icon>
+							</button> -->
+							<button color='accent' mat-raised-button mat-icon-button>
+								<mat-icon>mode_edit</mat-icon>
+							</button>
+						</mat-cell>
+					</ng-container>
+				</mat-table>
+				<mat-paginator color='accent' #paginator [length]='length' [pageIndex]='0' [pageSize]='10' [pageSizeOptions]='[10, 25, 50, 100]'></mat-paginator>
+			</mat-card-content>
+		</mat-card>
+	</mat-drawer-content>
+</mat-drawer-container>

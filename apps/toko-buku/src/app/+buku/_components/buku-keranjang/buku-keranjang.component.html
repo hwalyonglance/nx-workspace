@@ -1,0 +1,117 @@
+<mat-card>
+	<mat-card-content>
+		<form [formGroup]='keranjangForm' fxLayout='row' fxLayoutGap='16px'>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='nama' matInput name='keranjang_nama' placeholder='Buat Keranjang Baru'>
+					<button (click)='buatKeranjang()' color='primary' mat-icon-button mat-raised-button matSuffix matTooltip='Buat Keranjang Baru'>
+						<mat-icon>save</mat-icon>
+					</button>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<mat-select #C_Mat_Select_Keranjang formControlName='daftarKeranjang' placeholder='Pilih Keranjang'>
+						<mat-option *ngFor='let keranjang of Keranjang$_' [value]='keranjang.idKeranjang'>{{ keranjang.nama }}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<!-- <div fxFlex [fxShow]='(level === "pegawai")'>
+				<mat-form-field class='full-width'>
+					<mat-select #C_Mat_Select_Konsumen formControlName='daftarKonsumen' placeholder='Pilih Konsumen'>
+						<mat-option *ngFor='let konsumen of Konsumen$_' [value]='konsumen.idKonsumen'>{{ konsumen.nama }}</mat-option>	
+					</mat-select>
+				</mat-form-field>
+			</div> -->
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<mat-select #C_Mat_Select_NoIsbn formControlName='noIsbn' placeholder='Pilih Buku'>
+						<mat-option *ngFor='let buku of Buku$_' [value]='buku.noIsbn.toString()'>
+							<img class='iil' [src]='buku.gambar'>
+							<span class='owit'>{{ buku.judul }}</span>
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</form>
+		<form *ngIf='Keranjang$_' [class.m-b80px]='mq_min_width_959px' [formGroup]='bukuKeranjangForm' fxLayout='column' fxLayoutGap='16px' fxLayout.gt-xs='row'>
+			<div fxFlex='50' fxLayout='column'>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='stok' matInput placeholder='Stok' readonly type='number'>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='harga' matInput placeholder='Harga' readonly type='number'>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='beli' matInput min='1' [max]='max' placeholder='Beli' [readonly]='keranjangForm.get("noIsbn").value == "undefined"' required type='number'>
+						<button (click)='perbaruiIsiKeranjang("tambah")' color='primary' [disabled]='bukuKeranjangForm.get("beli").value < 1' mat-icon-button mat-raised-button matSuffix matTooltip='Tambah Ke Keranjang'>
+							<mat-icon>add</mat-icon>
+						</button>
+						<button (click)='perbaruiIsiKeranjang("kurang")' color='primary' [disabled]='bukuKeranjangForm.get("beli").value < 1' mat-icon-button mat-raised-button matSuffix matTooltip='Kurangi dari Keranjang'>
+							<b>-</b>
+						</button>
+					</mat-form-field>
+				</div>
+				<div fxFlex>
+					<mat-form-field class='full-width'>
+						<input formControlName='subtotal' matInput placeholder='Subtotal' readonly type='number'>
+					</mat-form-field>
+				</div>
+			</div>
+			<div fxFlex='50'>
+				<p style='float: left; text-align: justify;'>
+					<img #C_$NE_Img_BukuKeranjangForm [class.hide]='!buku.gambar' style='float: left; margin: 0 4px 4px 0; max-width: 100%; max-height: 225px'>
+					{{ _truncate(buku.sinopsis, 512) }}
+				</p>
+			</div>
+		</form>
+	</mat-card-content>
+</mat-card>
+<br>
+<mat-card [style.display]='keranjang.getValue().idKeranjang !== "" ? "block" : "none"'>
+	<mat-card-content>
+		<mat-toolbar color='primary'>
+			<!-- <button color='primary' fxFlex='40px' mat-icon-button [matMenuTriggerFor]='C_Mat_Menu_MV' mat-raised-button><mat-icon>more_vert</mat-icon></button>
+			<mat-menu #C_Mat_Menu_MV='matMenu'>
+				<button (click)='simpan()' color='primary' mat-menu-item>Cetak</button>
+			</mat-menu> -->
+			<button (click)='$_ilmBukuKeranjang.cetak()' color='accent' fxFlex='40px' mat-icon-button mat-button matTooltip='Cetak'><mat-icon>print</mat-icon></button>
+			<mat-form-field class='full-width' color='accent' floatPlaceholder='never' fxFlex>
+				<input #filter matInput placeholder="Cari di Keranjang">
+			</mat-form-field>
+		</mat-toolbar>
+		<mat-table #table [dataSource]='keranjangMatTableDataSource' matSort>
+			<mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+			<mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
+			<ng-container matColumnDef='judul'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Judul </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.$buku.judul}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='harga'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Harga </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.$buku.harga|currency:'IDR'}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='beli'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Beli </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{row.beli}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='subtotal'>
+				<mat-header-cell *matHeaderCellDef mat-sort-header> Subtotal </mat-header-cell>
+				<mat-cell *matCellDef='let row'> {{(row.beli * row.$buku.harga)|currency:'IDR'}} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef='action'>
+				<mat-header-cell *matHeaderCellDef></mat-header-cell>
+				<mat-cell *matCellDef='let row'>
+					<button (click)='ubahBeliBuku(row)' color='primary' mat-raised-button mat-icon-button matTooltip='Ubah Data'><mat-icon>mode_edit</mat-icon></button>
+					<button (click)='hapusDariKeranjang(row.noIsbn, row.$buku.judul)' color='warn' mat-raised-button mat-icon-button matTooltip='Hapus Dari Keranjang'><mat-icon>delete</mat-icon></button>
+				</mat-cell>
+			</ng-container>
+		</mat-table>
+		<!-- <mat-paginator color='accent' #paginator [length]='length' [pageIndex]='0' [pageSize]='10' [pageSizeOptions]='[10, 25, 50, 100]'></mat-paginator> -->
+	</mat-card-content>
+</mat-card>

@@ -1,20 +1,10 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- **/
+declare var __dirname: any, require: any, process: any;
 
-import * as express from 'express';
+import { app, PORT } from './app/server';
 
-const app = express();
-
-app.get('/api', (req, res) => {
-  res.send({message: `Welcome to toko-buku-server!`});
-});
-
-const port = process.env.port || 3333;
-app.listen(port, (err) => {
-  if (err) {
-    console.error(err);
-  }
-  console.log(`Listening at http://localhost:${port}`);
+app.listen(PORT, (err) => {
+	if (err) {
+		console.error(err);
+	}
+	console.log(`Listening at http://localhost:${PORT}`);
 });

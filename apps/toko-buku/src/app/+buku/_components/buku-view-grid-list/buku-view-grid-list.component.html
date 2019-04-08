@@ -1,0 +1,58 @@
+<mat-grid-list *ngIf='Buku$_.length > 0; else bukuTidakTersedia' cols="3" gutterSize='12px' rowHeight='450px'>
+	<ng-container *ngFor='let a of [1, 2, 3]'>
+		<mat-grid-tile *ngFor='let buku of Buku$_'>
+			<mat-card style='height: 100% !important;width: 100% !important;'>
+				<mat-card-header>
+					<mat-card-title>{{ buku.judul }}</mat-card-title>
+					<!-- <mat-card-subtitle></mat-card-subtitle> -->
+				</mat-card-header>
+				<mat-card-content style='height: 80%'>
+					<div fxLayout='column' style='width: 100%; height: 100%;'>
+						<div fxFlex='35' style='text-align: center'>
+							<img [src]='buku.gambar' style='max-height: 128px;max-width: 90%;margin: 0 auto;'>
+						</div>
+						<div fxFlex>
+							<table style='font-size: 12px; width: 100%;margin-top: 20px'>
+								<colgroup width='56px'></colgroup>
+								<tr>
+									<td>No. ISBN</td>
+									<td> : </td>
+									<td>{{ buku.noIsbn }}</td>
+								</tr>
+								<tr>
+									<td>Kategori</td>
+									<td> : </td>
+									<td>{{ buku.$kategori.kategori }}</td>
+								</tr>
+								<tr>
+									<td>Penerbit</td>
+									<td> : </td>
+									<td>{{ buku.$penerbit.penerbit }}</td>
+								</tr>
+								<tr>
+									<td>Penulis</td>
+									<td> : </td>
+									<td>{{ buku.$penerbit.penulis }}</td>
+								</tr>
+								<tr>
+									<td>Sinopsis</td>
+									<td> : </td>
+									<td>{{ substring(buku.sinopsis) }}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</mat-card-content>
+				<mat-card-footer align='end' style='padding: 0 24px'>
+					<span>{{ buku.harga | currency:'IDR' }}</span>
+					<button (click)='pesan(buku.noIsbn)' color='primary' mat-raised-button>Pesan</button>
+				</mat-card-footer>
+			</mat-card>
+		</mat-grid-tile>
+	</ng-container>
+</mat-grid-list>
+<ng-template #bukuTidakTersedia>
+	<div>
+		<p>Buku Tidak Tersedia</p>
+	</div>
+</ng-template>

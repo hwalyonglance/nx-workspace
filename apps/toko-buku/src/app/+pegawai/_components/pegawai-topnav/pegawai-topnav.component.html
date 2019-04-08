@@ -1,0 +1,16 @@
+<mat-toolbar class='no-margin topnav' color='primary'>
+	<ng-content></ng-content>
+	<span class='pointer' routerLink='/'>Toko Buku</span>
+	<span class='flex-auto'></span>
+	<!-- <button color='accent' mat-raised-button routerLink='/dev'>Dev</button> -->
+	<!-- <button color='accent' mat-raised-button [matMenuTriggerFor]='C_Mat_Menu__Nav'>Form</button> -->
+	<button (click)='keluar()' color='warn' mat-raised-button [matTooltip]='$_ilmPegawaiAuthChildren.$pegawai.nama'>Keluar</button>
+</mat-toolbar>
+
+<mat-menu #C_Mat_Menu__Nav='matMenu' [overlapTrigger]='false'>
+	<button mat-menu-item routerLink='/pegawai/' routerLinkActive='active'>Pegawai</button>
+	<button mat-menu-item routerLink='/pegawai/penerbit' routerLinkActive='active'>Pegawai Penerbit</button>
+	<button mat-menu-item routerLink='/pegawai/kategori' routerLinkActive='active'>Pegawai Kategori</button>
+	<button mat-menu-item routerLink='/pegawai/buku' routerLinkActive='active'>Pegawai Buku</button>
+	<button mat-menu-item routerLink='/pegawai/form' routerLinkActive='active'>Pegawai Form</button>
+</mat-menu>

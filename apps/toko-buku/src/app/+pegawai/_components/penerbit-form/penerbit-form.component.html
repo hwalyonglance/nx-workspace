@@ -1,0 +1,34 @@
+<mat-toolbar color='primary'>
+	<span fxFlex>{{ $aksi }} Penerbit</span>
+	<span class='flex-auto'></span>
+	<button (click)='$event$.next("tutup")' color='accent' fxFlex='40px' mat-button mat-icon-button mat-raised-button matTooltip='Tutup Form'><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+<mat-card>
+	<mat-card-content>
+		<form [formGroup]='penerbitForm' fxLayout='column'>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='penerbit' matInput placeholder='Nama Penerbit' required>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='penulis' matInput placeholder='Nama Penulis' required>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<input formControlName='telepon' matInput placeholder='Telepon' required>
+				</mat-form-field>
+			</div>
+			<div fxFlex>
+				<mat-form-field class='full-width'>
+					<textarea formControlName='alamat' matInput matTextareaAutosize matAutosizeMaxRows='8' matAutosizeMinRows='2' placeholder='Alamat' required></textarea>
+				</mat-form-field>
+			</div>
+		</form>
+	</mat-card-content>
+	<mat-card-actions align='end'>
+		<button (click)='simpan()' [disabled]='!valid' color='primary' mat-raised-button>{{ $aksi }}</button>
+	</mat-card-actions>
+</mat-card>
