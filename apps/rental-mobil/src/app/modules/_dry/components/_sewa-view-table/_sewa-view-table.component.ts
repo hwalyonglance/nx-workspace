@@ -4,12 +4,10 @@ import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewCh
 import { MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
+import { BehaviorSubject, Observable, fromEvent } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 import { TableExpand } from '../../animations/table-expand.animation';
 
@@ -104,8 +102,8 @@ export class _SewaViewTableComponent implements AfterViewInit, OnDestroy, OnInit
 	}
 	ngOnDestroy() { }
 	ngOnInit() {
-		Observable.fromEvent(this.filter.nativeElement, 'keyup')
-			.distinctUntilChanged()
+		fromEvent(this.filter.nativeElement, 'keyup')
+			.pipe(distinctUntilChanged())
 			.subscribe(() => {
 				this.C_Mat_Paginator.pageIndex = 0;
 				this.sewaMatTableDataSource.filter = this.filter.nativeElement.value;
@@ -125,7 +123,6 @@ export class _SewaViewTableComponent implements AfterViewInit, OnDestroy, OnInit
 			})
 	}
 	triggerGeneratePDF() {
-		console.log(this.data)
 		this.$_ngHttpClient.put('/generate/pdf', '')
 			.subscribe()
 	}

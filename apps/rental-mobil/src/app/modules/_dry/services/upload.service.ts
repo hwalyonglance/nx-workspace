@@ -1,10 +1,15 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Upload } from '../classes/upload.class';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import * as firebase from 'firebase';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class UploadService {
 
 	basePath = 'uploads';
@@ -17,13 +22,14 @@ export class UploadService {
 	constructor(private $_ngfFirestore: AngularFirestore) { }
 
 	getUploads(): Observable<Upload[]> {
-		this.uploads = this.$_ngfFirestore.collection(this.basePath).snapshotChanges().map((actions) => {
-			return actions.map((a) => {
-				const data = a.payload.doc.data();
-				const $key = a.payload.doc.id;
-				return { $key, ...data };
-			});
-		});
+		this.uploads = this.$_ngfFirestore.collection(this.basePath).snapshotChanges()
+			.pipe(map((actions) => {
+				return actions.map((a) => {
+					const data = a.payload.doc.data();
+					const $key = a.payload.doc.id;
+					return { $key, ...data };
+				});
+			}));
 		return this.uploads;
 	}
 
@@ -77,7 +83,6 @@ export class UploadService {
 		return storageRef.child(`${this.basePath}/${name}`).delete()
 	}
 	detectFiles($event: Event): void {
-		console.log($event)
 		this.selectedFiles = ($event.target as HTMLInputElement).files;
 	}
 }

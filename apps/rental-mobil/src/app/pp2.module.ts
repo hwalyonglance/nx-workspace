@@ -1,14 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PLATFORM_ID, APP_ID, Inject, isDevMode, NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { environment } from '../environments/environment';
-
-// import { BrowserPrebootModule } from 'preboot/browser';
-
-// import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { DryModule } from './modules/_dry/dry.module';
 
@@ -23,10 +18,7 @@ import { NavComponent_ } from './components/_nav/_nav.component';
 @NgModule({
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'pp2' }),
-		// BrowserPrebootModule.replayEvents(),
 		HttpClientModule,
-		HttpModule,
-		// TransferHttpCacheModule,
 		PengurusModule,
 		SayaModule,
 		Pp2RoutingModule

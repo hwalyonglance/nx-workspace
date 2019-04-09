@@ -1,19 +1,17 @@
 import { EventEmitter, Inject, Injectable, isDevMode } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentChangeAction } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentChangeAction } from '@angular/fire/firestore';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import * as firebase from 'firebase';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-
 export type Operator = '<' | '>' | '<=' | '>=' | '==' | '===' | '!=' | '!==';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class DatabaseService<T> {
 	get data(): T[] {
 		let _data = this.dataChange.value;
@@ -43,7 +41,6 @@ export class DatabaseService<T> {
 	}
 	set table(tableName){
 		this._table = tableName
-		console.log(tableName)
 		this.itemCol = this.$_ngfFirestore.collection<T>(this.table);
 		this.itemCol.stateChanges().subscribe((actions) => {
 			const $data = [];

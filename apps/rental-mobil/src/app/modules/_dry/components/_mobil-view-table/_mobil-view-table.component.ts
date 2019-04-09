@@ -3,12 +3,10 @@ import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewCh
 import { MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/filter';
+import { Observable, fromEvent } from 'rxjs';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 
 import { _KonfirmasiHapusDialogComponent } from '../_konfirmasi-hapus-dialog/_konfirmasi-hapus-dialog.component';
 
@@ -78,8 +76,8 @@ export class _MobilViewTableComponent implements AfterViewInit, OnDestroy, OnIni
 	}
 	ngOnDestroy(){}
 	ngOnInit() {
-		Observable.fromEvent(this.filter.nativeElement, 'keyup')
-			.distinctUntilChanged()
+		fromEvent(this.filter.nativeElement, 'keyup')
+			.pipe(distinctUntilChanged())
 			.subscribe(() => {
 				this.C_Mat_Paginator.pageIndex = 0;
 				this.mobilMatTableDataSource.filter = this.filter.nativeElement.value;

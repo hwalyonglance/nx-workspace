@@ -3,18 +3,15 @@
  * This is only a minimal backend to get started.
  **/
 
-import * as express from 'express';
-
-const app = express();
+import { app, PORT } from './app/server';
 
 app.get('/api', (req, res) => {
   res.send({message: `Welcome to rental-mobil-server!`});
 });
 
-const port = process.env.port || 3333;
-app.listen(port, (err) => {
+app.listen(PORT, (err) => {
   if (err) {
     console.error(err);
   }
-  console.log(`Listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${PORT}`);
 });

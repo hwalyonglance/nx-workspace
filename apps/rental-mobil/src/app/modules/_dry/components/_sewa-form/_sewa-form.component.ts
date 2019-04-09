@@ -4,10 +4,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DateAdapter, MatCheckbox, MatDatepicker, MatSnackBar, NativeDateAdapter } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AngularFirestore } from 'angularfire2/firestore';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { MobilId, PenggunaId, SewaId, SupirId } from '../../interfaces/sewa.interface';
 
@@ -189,7 +186,6 @@ export class _SewaFormComponent implements AfterViewInit, OnInit {
 			totalSewaHari: this.total_hari_sewa
 		};
 		if (this._butuhSupir.checked) { this._sewa.id_supir = this.Supir.id }
-		console.log(this._sewa)
 		this.$_pp2SewaDatabase.create(this._sewa)
 		this.$_matSnackBar.open('Berhasil Menyewa Mobil')
 

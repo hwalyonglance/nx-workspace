@@ -63,12 +63,4 @@ app.get('*', (req, res) => {
 	res.render('index', { req, res });
 });
 
-// // Start up the Node server
-// app.listen(PORT, () => {
-//   console.log(`Node server listening on http://localhost:${PORT}`);
-// });
-
-const server = createServer(app)
-server.listen(PORT, (err)=>{
-	console.log(err, PORT)
-})
+export { app, PORT };

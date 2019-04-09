@@ -1,6 +1,8 @@
 import { Injectable, isDevMode } from '@angular/core';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class Pp2Service {
 	constructor() {}
 	parse(str){

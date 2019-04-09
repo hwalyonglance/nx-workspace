@@ -6,7 +6,9 @@ import { Pp2MediaQueryScreen } from '../interfaces/Pp2-media-query.interface';
 
 declare var module: any, require: any;
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class Pp2MediaQueryService {
 	size = {
 		xs:	{min:0,		max:575},

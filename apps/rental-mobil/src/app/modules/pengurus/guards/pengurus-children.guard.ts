@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { CanActivateChild, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 import * as firebase from 'firebase/app';
 
@@ -60,7 +60,6 @@ export class PengurusChildrenGuard implements CanActivateChild {
 		.catch(console.error );
 	}
 	private updateUserData(user: User = {uid: Date.now().toString()}) {
-
 		const userRef: AngularFirestoreDocument<User> = this.$_ngfStore.doc(`users/${user.uid}`);
 
 		const data: User = {

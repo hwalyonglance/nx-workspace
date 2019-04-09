@@ -1,7 +1,6 @@
-import { AnimationEntryMetadata } from '@angular/core';
 import { animate, transition, trigger, state, style } from '@angular/animations';
 
-export const TableExpand: AnimationEntryMetadata = [
+export const TableExpand = [
 	trigger('detailExpand', [
 		state('collapsed', style({height: '0px', minHeight: '0', visibility: 'hidden'})),
 		state('expanded', style({height: '*', visibility: 'visible'})),

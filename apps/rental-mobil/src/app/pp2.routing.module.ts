@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
-import { DevComponent } from './components/dev/dev.component';
 import { PenggunaDaftarComponent } from './components/pengguna-daftar/pengguna-daftar.component';
 import { MobilViewGridComponent } from './components/mobil-view-grid/mobil-view-grid.component';
 import { MasukComponent } from './components/masuk/masuk.component';
@@ -10,7 +9,6 @@ import { SupirViewGridComponent } from './components/supir-view-grid/supir-view-
 
 export const Pp2Components = [
 	HomeComponent,
-	DevComponent,
 	PenggunaDaftarComponent,
 	MobilViewGridComponent,
 	MasukComponent,
@@ -28,7 +26,6 @@ const routes: Routes = [
 		{ path: 'pengguna', component: PenggunaDaftarComponent, data: {type: 'tambah'} },
 		{ path: '**', pathMatch: 'full', redirectTo: '/pendaftaran/pengguna' }
 	]},
-	{ path: 'dev', component: DevComponent },
 	{ path: 'mobil', component: MobilViewGridComponent },
 	{ path: 'supir', component: SupirViewGridComponent },
 	{ path: '**', pathMatch: 'full', redirectTo: '/' }

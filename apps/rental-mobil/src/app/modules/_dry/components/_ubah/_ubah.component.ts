@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { MatSelect } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import 'rxjs/add/operator/filter';
-
 import { _MobilFormComponent } from '../_mobil-form/_mobil-form.component';
 import { _PenggunaFormComponent } from '../_pengguna-form/_pengguna-form.component';
 import { _SupirFormComponent } from '../_supir-form/_supir-form.component';

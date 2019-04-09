@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from "@angular
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Upload } from '../../classes/upload.class';
 
