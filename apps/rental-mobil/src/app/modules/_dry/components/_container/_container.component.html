@@ -1,0 +1,10 @@
+<div class="pp2-dry-container">
+	<mat-sidenav-container #C_Mat_Sidenav_Container fullscreen>
+		<mat-sidenav #C_Mat_Sidenav mode='over' [opened]='false'>
+			<pp2-dry-sidenav></pp2-dry-sidenav>
+		</mat-sidenav>
+		<mat-sidenav-content #C_Mat_Sidenav_Content tabindex='1'>
+			<ng-content></ng-content>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>

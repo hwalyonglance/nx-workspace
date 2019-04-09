@@ -1,0 +1,25 @@
+<div class="pp2-saya-nav pp2----nav">
+	<nav>
+		<mat-toolbar color='primary'>
+			<button *ngIf='isDevMode()' class='m12px' mat-icon-button>
+				<mat-icon class='pointer' (click)='$C_Mat_Sidenav_Click$.next()'>menu</mat-icon>
+			</button>
+			<span class='m12px pointer' routerLink='/'>Rental Mobil</span>
+			<span class='flex-auto'></span>
+			<button class='hide-on-small-only' mat-button routerLink='/saya'><a>Penyewaan</a></button>
+			<button class='hide-on-small-only' mat-button routerLink='/mobil'><a>Mobil</a></button>
+			<button class='hide-on-small-only' mat-button routerLink='/supir'><a>Supir</a></button>
+			<button class='hide-on-small-only' mat-button routerLink='/saya/sewa'><a>Sewa</a></button>
+			<button class='hide-on-small-only' (click)='keluar()' mat-button [matTooltip]='saya.nama'><a>Keluar</a></button>
+			<button class='hide-on-med-and-up nav menu' mat-button mat-icon-button [matMenuTriggerFor]='C_Mat__Nav'><mat-icon>more_vert</mat-icon></button>
+		</mat-toolbar>
+
+		<mat-menu #C_Mat__Nav='matMenu' [overlapTrigger]='false'>
+			<button mat-menu-item routerLink='/saya'><a>Penyewaan</a></button>
+			<button mat-menu-item routerLink='/mobil'><a>Mobil</a></button>
+			<button mat-menu-item routerLink='/supir'><a>Supir</a></button>
+			<button mat-menu-item routerLink='/saya/sewa'><a>Sewa</a></button>
+			<button (click)='keluar()' mat-menu-item [matTooltip]='saya.nama'><a>Keluar</a></button>
+		</mat-menu>
+	</nav>
+</div>

@@ -1,0 +1,37 @@
+<div class='pp2-dry-mobilViewGrid container pp2-content margin-auto'>
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Mobil</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-grid-list #C_Mat_GridList [cols]='cols' gutterSize='4px' rowHeight="430px">
+				<mat-grid-tile *ngFor='let mobil of Mobil$' style='background-color: #26A69A'>
+					<mat-grid-tile-header>
+						<!-- <mat-icon mat-grid-avatar>info_outline</mat-icon> -->
+						<span>
+							{{ mobil.nama }}
+						</span>
+						<span class='flex-auto'></span>
+						<span>
+							{{ mobil.hargaSewa | currency:'IDR' }}
+						</span>
+					</mat-grid-tile-header>
+					<div class='mat-grid-tile-content' style="padding: 8px;">
+						<img [src]='mobil.image' style="max-height: 200px; width: 90%; margin-left: 5%">
+						<p>
+							<br>
+							Kursi		:	{{ mobil.kursi }}	<br>
+							Bahan Bakar	:	{{ mobil.bensin }}	<br>
+							Plat Nomor	:	{{ mobil.platNo }}	<br>
+							Kondisi		:	{{ mobil.kondisi }}	<br>
+						</p>
+					</div>
+					<mat-grid-tile-footer>
+						<h3 mat-line></h3>
+						<a><button (click)='pindah(mobil.id)' color='primary' mat-raised-button style="color: #FFF !important" type="button">Sewa</button></a>
+					</mat-grid-tile-footer>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-card-content>
+	</mat-card>
+</div>

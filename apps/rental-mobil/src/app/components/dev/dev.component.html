@@ -1,0 +1,13 @@
+<div class="pp2-dev">
+	<pp2--nav #C_Pp2__Nav></pp2--nav>
+	<pp2-dry-container #C_Pp2_Dry_Container>
+		<div class='container pp2-content margin-auto'>
+			<pp2-dry-fileImage #fi></pp2-dry-fileImage>
+			<button (click)='uploadSingle()' mat-fab style='position: fixed;bottom: 64px; right: 64px'><mat-icon>add</mat-icon></button>
+			<!-- <pp2-dry-pengembalianForm></pp2-dry-pengembalianForm> -->
+			<ol>
+				<li *ngFor='let item of _database.items | async'> {{ item | json }} </li>
+			</ol>
+		</div>
+	</pp2-dry-container>	
+</div>

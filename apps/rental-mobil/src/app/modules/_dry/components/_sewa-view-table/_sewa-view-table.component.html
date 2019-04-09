@@ -1,0 +1,130 @@
+<div class="pp2-dry-sewaViewTable pp2-content margin-auto">
+	<mat-card>
+		<mat-card-content>
+			<mat-toolbar color='primary'>
+				<mat-form-field class='full-width' color='accent' floatPlaceholder="never">
+					<input matInput #filter placeholder="Cari Penyewaan">
+				</mat-form-field>
+			</mat-toolbar>
+			<mat-table #table [dataSource]="sewaMatTableDataSource" matSort>
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;" [style.borderBottomColor]="expandedSewa == row ? 'transparent' : ''"></mat-row>
+				<!-- Detail Column -->
+				<ng-container matColumnDef="details">
+					<mat-cell *matCellDef="let row">
+						<ng-container *ngIf="wasExpanded.has(row.data)">
+							<table class='browser-default'>
+								<colgroup width='150px'></colgroup>
+								<tr>
+									<td colspan="2" style="padding: 5px;">
+										<img class="materialboxed" data-caption='gggg' [src]='row.data.pengguna.image' style='max-width: 400px;align-self: center; justify-self: center;'>
+									</td>
+								</tr>
+								<tr>
+									<td>Nama Penyewa</td>
+									<td>{{ row.data.pengguna.nama }}</td>
+								</tr>
+								<tr>
+									<td>Nomor Seluler</td>
+									<td>{{ row.data.pengguna.noHP }}</td>
+								</tr>
+								<tr>
+									<td>Alamat Penyewa</td>
+									<td>{{ row.data.pengguna.alamat }}</td>
+								</tr>
+								<tr>
+									<td>Nama Mobil</td>
+									<td>{{ row.data.mobil.nama }}</td>
+								</tr>
+								<tr>
+									<td>Nama Supir</td>
+									<td>{{ row.data?.supir ? row.data.supir.nama : '---' }}</td>
+								</tr>
+								<tr>
+									<td>Periode Penyewaan</td>
+									<td>{{ hapusBR(periode(row.data)) }}</td>
+								</tr>
+							</table>
+						</ng-container>
+					</mat-cell>
+				</ng-container>
+
+				<!-- Column Definition: id -->
+				<ng-container matColumnDef="id">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+					<mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+				</ng-container>
+				<!-- Column Definition: u_image -->
+				<ng-container matColumnDef="u_image">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Foto </mat-header-cell>
+					<mat-cell *matCellDef="let row;">
+						<img class="materialboxed" [src]='row.pengguna.image' style='max-height: 50px;max-width: 50px;align-self: center; justify-self: center;'>
+					</mat-cell>
+				</ng-container>
+				<!-- Column Definition: u_nama -->
+				<ng-container matColumnDef="u_nama">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Penyewa </mat-header-cell>
+					<mat-cell *matCellDef="let row;">
+						<span style='float: left !important; margin-right: 8px'>
+							<img [src]='row.pengguna.image' style='max-height: 56px;max-width: 56px;align-self: center; justify-self: center;'>
+						</span>
+						<span>
+							<br>{{row.pengguna.nama}}</span>
+					</mat-cell>
+				</ng-container>
+				<!-- Column Definition: m_nama -->
+				<ng-container matColumnDef="m_nama">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Mobil </mat-header-cell>
+					<mat-cell *matCellDef="let row;">
+						<span style='float: left !important; margin-right: 8px'>
+							<img [src]='row.mobil.image' style='height: 56px;width: 64px;align-self: center; justify-self: center;'>
+						</span>
+						<span> <br>{{row.mobil.nama}} </span>
+					</mat-cell>
+				</ng-container>
+				<!-- Column Definition: s_nama -->
+				<ng-container matColumnDef="s_nama">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Supir </mat-header-cell>
+					<mat-cell *matCellDef="let row;">
+						<span *ngIf='row.supir' style='float: left !important; margin-right: 8px'>
+							<img [src]='row.supir.image' style='max-height: 56px;max-width: 56px;align-self: center; justify-self: center;'>
+						</span>
+						<span> <br>{{row.supir?.nama ? row.supir?.nama : '---'}} </span>
+					</mat-cell>
+				</ng-container>
+				<!-- Column Definition: _s_hari -->
+				<ng-container matColumnDef="_s_hari">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Sewa hari </mat-header-cell>
+					<mat-cell *matCellDef="let row;" [innerHTML]='periode(row)'></mat-cell>
+				</ng-container>
+				<!-- Column Definition: _s_hargaTotal -->
+				<ng-container matColumnDef="_s_hargaTotal">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Harga Sewa Total </mat-header-cell>
+					<mat-cell *matCellDef="let row;"> {{ ((row.totalSewaHari * row.mobil.hargaSewa) + (row?.supir ? row.totalSewaHari * row.supir.hargaSewa :0)) | currency:'IDR' }} </mat-cell>
+				</ng-container>
+				<!-- Column Definition: action -->
+				<ng-container matColumnDef="action">
+					<mat-header-cell *matHeaderCellDef> Tindakan </mat-header-cell>
+					<mat-cell *matCellDef="let row">
+						<!-- <button *ngIf='level == "pengguna"' color='accent' mat-raised-button mat-icon-button matTooltip='Ubah Data Penyewaan' [routerLink]='"/saya/sewa/" + id(row)'>
+							<mat-icon>arrow_forward</mat-icon>
+						</button>
+						<button *ngIf='level == "pengurus"' color='accent' mat-icon-button mat-raised-button>
+							<mat-icon>arrow_forward</mat-icon>
+						</button> -->
+						<button color='primary' mat-button matTooltip='Cetak Laporan'>
+							<mat-icon>print</mat-icon>
+						</button>
+						<button color='accent' mat-raised-button mat-icon-button matTooltip='Detail' (click)="rowClick(row)">
+							<mat-icon>details</mat-icon>
+						</button>
+						<button color='warn' mat-raised-button mat-icon-button matTooltip='Hapus Penyewaan' (click)='remove(row.id)'>
+							<mat-icon>delete</mat-icon>
+						</button>
+					</mat-cell>
+				</ng-container>
+			</mat-table>
+			<mat-paginator color='accent' #paginator [length]='length' [pageIndex]='0' [pageSize]='5' [pageSizeOptions]='[5, 10, 25, 100]'></mat-paginator>
+		</mat-card-content>
+	</mat-card>
+</div>

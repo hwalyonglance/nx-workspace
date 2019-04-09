@@ -54,6 +54,11 @@
       "tags": [
         "toko-buku-server"
       ]
+    },
+    "rental-mobil-server": {
+      "tags": [
+        "rental-mobil-server"
+      ]
     }
   }
 }

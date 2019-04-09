@@ -1,0 +1,20 @@
+.pp2-dry-fileImage {
+	// height: 300px;
+}
+.img-view {
+	// background-color: yellowgreen;
+	max-width: 100%;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.img-view img {
+	max-width: 225px;
+	max-height: 225px;
+}
+.img-view button {
+	background-color: transparent;
+	// border: 0 solid transparent;
+	font-size: 20px;
+	width: 100%;
+}

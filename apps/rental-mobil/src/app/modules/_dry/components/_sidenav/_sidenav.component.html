@@ -1,0 +1,9 @@
+<div class="pp2-dry-sidenav">
+	<aside>
+		<mat-nav-list dense>
+			<mat-list-item *ngFor='let link of links' [routerLink]='link.url'>
+				<a mat-line> {{ link.text }} </a>
+			</mat-list-item>
+		</mat-nav-list>
+	</aside>
+</div>

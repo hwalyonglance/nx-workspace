@@ -1,0 +1,207 @@
+<div class="pp2-dry-sewaForm container pp2-content margin-auto">
+	<mat-card class='full-width'>
+		<mat-card-header>
+			<mat-card-title>
+				Sewa Mobil
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<div class="pp2-dry-sewaForm-container">
+				<mat-vertical-stepper [linear]='true'>
+					<mat-step [stepControl]='sewaForm_mobil'>
+						<ng-template matStepLabel>Mobil {{ Mobil?.hargaSewa ? ' => ' + (Mobil?.hargaSewa | currency:'IDR') : '' }}</ng-template>
+						<form [formGroup]='sewaForm_mobil'>
+							<div fxLayout='column'>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<mat-select formControlName='mobil' name='mobil' placeholder='Mobil'>
+											<mat-option *ngFor='let mobil of Mobil$' [value]='$_pp2.stringify(mobil)'>
+												<img [src]="mobil.image" class='iil ------'>
+												<span class="owit">{{ mobil.nama }}</span>
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='mobil_name' placeholder='Nama Mobil' [value]='Mobil?.nama ? Mobil.nama : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='mobil_platNomor' placeholder='Plat Nomor' [value]='Mobil?.platNo ? Mobil.platNo : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='mobil_jumlahKursi' placeholder='Jumlah Kursi' [value]='Mobil?.kursi ? Mobil.kursi : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='mobil_bahanBakar' placeholder='Bahan Bakar' [value]='Mobil?.bensin ? Mobil.bensin : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='mobil_sewaPerHari' placeholder='Harga Sewa per Hari (Rp.)' value='{{ (Mobil?.hargaSewa ? Mobil.hargaSewa : "0") | currency:"IDR" }}'>
+									</mat-form-field>
+								</div>
+							</div>
+						</form>
+						<div>
+							<button color='primary' mat-raised-button matStepperNext>Selanjutnya</button>
+						</div>
+					</mat-step>
+					<mat-step [stepControl]='sewaForm_supir'>
+						<ng-template matStepLabel>Supir {{ Supir?.hargaSewa ? ' => ' + (Supir?.hargaSewa | currency:'IDR') : '' }}</ng-template>
+						<form [formGroup]='sewaForm_supir'>
+							<div fxLayout='column'>
+								<div fxFlex class='full-width'>
+									<section class='padd-15px'>
+										<mat-checkbox #butuhSupir color='primary' name='supir?'> Gunakan Jasa Supir?</mat-checkbox>
+									</section>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<mat-select formControlName='supir' name='supir' placeholder='Supir' [required]='butuhSupir.checked'>
+											<mat-option *ngFor='let supir of Supir$' [value]='$_pp2.stringify(supir)'>
+												<img [src]="supir.image" class='iil'>
+												<span class="owit">{{ supir.nama }}</span>
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='supir_nama' placeholder='Nama Supir' [value]='Supir?.nama ? Supir.nama : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='supir_sewaPerHari' placeholder='Harga Sewa per Hari (Rp.)' value='{{ (Supir?.hargaSewa ? Supir.hargaSewa : "0") | currency:"IDR" }}'>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='supir_noSIM' placeholder='Nomor SIM' [value]='Supir?.noSIM ? Supir.noSIM : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='supir_jk' placeholder='Jenis Kelamin' [value]='Supir?.jk ? Supir.jk : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='supir_noSeluler' placeholder='Nomor Seluler' [value]='Supir?.noHP ? Supir.noHP : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='supir_email' placeholder='E-Mail' [value]='Supir?.email ? Supir.email : ""'>
+									</mat-form-field>
+								</div>
+								<div fxFlex [fxHide]='!butuhSupir.checked'>
+									<mat-form-field class='full-width'>
+										<textarea disabled matInput matAutosizeMaxRows='4' matTextareaAutosize name='supir_alamat' placeholder="Alamat Supir" [value]='Supir?.alamat ? Supir.alamat : ""'></textarea>
+									</mat-form-field>
+								</div>
+							</div>
+						</form>
+						<div>
+							<button color='primary' mat-raised-button matStepperPrevious>Kembali</button>
+							<button color='primary' mat-raised-button matStepperNext>Selanjutnya</button>
+						</div>
+					</mat-step>
+					<mat-step [stepControl]='sewaForm_saya'>
+						<ng-template matStepLabel>Biodata Diri</ng-template>
+						<form [formGroup]='sewaForm_saya'>
+							<div fxLayout='column'>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='saya_nama' placeholder='Nama' [value]='Saya.nama'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='saya_noKTP' placeholder='Nomor KTP.' [value]='Saya.noKTP'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='saya_noSeluler' placeholder='Nomor Seluler' [value]='Saya.noHP'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='saya_jk' placeholder='Jenis Kelamin' [value]='Saya.jk'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='saya_email' placeholder='E-Mail' [value]='Saya.email'>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<mat-form-field class='full-width'>
+										<textarea disabled matInput matAutosizeMaxRows='4' matTextareaAutosize name='saya_alamat' placeholder='Alamat' [value]='Saya.alamat'></textarea>
+									</mat-form-field>
+								</div>
+								<div fxFlex>
+									<button color='primary' mat-raised-button matStepperPrevious>Kembali</button>
+									<button color='primary' mat-raised-button matStepperNext>Selanjutnya</button>
+								</div>
+							</div>
+						</form>
+					</mat-step>
+					<mat-step [stepControl]='sewaForm_sewa'>
+						<ng-template matStepLabel>Penyewaan</ng-template>
+						<form [formGroup]='sewaForm_sewa'>
+							<div fxLayout='column'>
+								<div fxFlex>
+									<mat-form-field (click)='mulai.open()' class='full-width'>
+										<input (keypress)='tgl_keypress($event); mulai.open()' formControlName='tgl_mulai' [min]='minDate' matInput name='sewa_mulai' [matDatepicker]='mulai' placeholder='Tanggal Mulai Sewa'>
+										<mat-datepicker-toggle #toggleMulai matSuffix [for]="mulai"></mat-datepicker-toggle>
+										<mat-datepicker #mulai></mat-datepicker>
+									</mat-form-field>
+								</div>
+								<div fxFlex *ngIf='sewaForm_sewa.value.tgl_mulai'>
+									<mat-form-field (click)='selesai.open()' class='full-width'>
+										<input (keypress)='tgl_keypress($event); selesai.open()' formControlName='tgl_selesai' [min]='tgl_selesai_minDate' matInput name='sewa_selesai' [matDatepicker]="selesai" placeholder='Tanggal Selesai Sewa'>
+										<mat-datepicker-toggle #toggleSelesai matSuffix [for]="selesai"></mat-datepicker-toggle>
+										<mat-datepicker #selesai></mat-datepicker>
+									</mat-form-field>
+								</div>
+								<div fxFlex *ngIf='sewaForm_sewa.value.tgl_selesai'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='sewa_totalHari' placeholder='Total Hari Penyewaan' [value]='total_hari_sewa + " Hari"'>
+									</mat-form-field>
+								</div>
+								<div fxFlex *ngIf='tgl_selesai'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='sewa_hargaMobil' placeholder='Total Harga Penyewaan Mobil (Rp.)' value='{{ (Mobil?.hargaSewa ? Mobil.hargaSewa : 0) * total_hari_sewa | currency:"IDR" }}'>
+									</mat-form-field>
+								</div>
+								<div fxFlex *ngIf='Supir?.hargaSewa'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='sewa_hargaSupir' placeholder='Total Harga Penyewaan Supir (Rp.)' value='{{ (Supir?.hargaSewa ? Supir.hargaSewa : 0) * total_hari_sewa | currency:"IDR" }}'>
+									</mat-form-field>
+								</div>
+								<div fxFlex *ngIf='Supir.hargaSewa'>
+									<mat-form-field class='full-width'>
+										<input disabled matInput name='sewa_hargaTotal' placeholder='Total Harga Penyewaan Mobil {{ Supir?.hargaSewa ? " + Supir" : "" }} (Rp.)' value='{{ (Supir?.hargaSewa ? Mobil.hargaSewa + Supir.hargaSewa : Mobil.hargaSewa) * total_hari_sewa | currency:"IDR" }}'>
+									</mat-form-field>
+								</div>
+							</div>
+						</form>
+						<div>
+							<button color='primary' mat-raised-button matStepperPrevious>Kembali</button>
+							<button (click)='pp2SewaSubmit()' color='primary' [disabled]='!sewaForm_sewa.valid' mat-raised-button>Selesai</button>
+						</div>
+					</mat-step>
+				</mat-vertical-stepper>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</div>

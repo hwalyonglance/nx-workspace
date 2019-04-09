@@ -1,0 +1,21 @@
+<div class='pp2-dry-nav pp2----nav'>
+	<nav>
+		<mat-toolbar color='primary'>
+			<button *ngIf='isDevMode()' class='m24px' mat-icon-button>
+				<mat-icon class='pointer' (click)='$C_Mat_Sidenav_Click$.next()'>menu</mat-icon>
+			</button>
+			<span class='m24px pointer' routerLink='/'>Rental Mobil</span>
+			<span class='flex-auto'></span>
+			<button mat-button routerLink='/pengurus/supir'>Supir</button>
+			<button mat-button routerLink='/pengurus/mobil'>Mobil</button>
+			<button mat-button routerLink='/pengurus/pengguna'>Pengguna</button>
+			<button mat-button mat-icon-button [matMenuTriggerFor]='C_Mat__Nav'><mat-icon>more_vert</mat-icon></button>
+		</mat-toolbar>
+
+		<mat-menu #C_Mat__Nav='matMenu' [overlapTrigger]='false'>
+			<button mat-menu-item routerLink='/pengurus/supir'>Supir</button>
+			<button mat-menu-item routerLink='/pengurus/mobil'>Mobil</button>
+			<button mat-menu-item routerLink='/pengurus/pengguna'>Pengguna</button>
+		</mat-menu>
+	</nav>
+</div>

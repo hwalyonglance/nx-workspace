@@ -1,0 +1,36 @@
+<div class='pp2-dry-supirViewGrid container pp2-content margin-auto'>
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Supir</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-grid-list #C_Mat_GridList [cols]='cols' gutterSize='4px' rowHeight="400px">
+				<mat-grid-tile *ngFor='let supir of Supir$' style='background-color: #26A69A'>
+					<mat-grid-tile-header>
+						<!-- <mat-icon mat-grid-avatar>info_outline</mat-icon> -->
+						<span>
+							{{ supir.nama }}
+						</span>
+						<span class='flex-auto'></span>
+						<span>
+							{{ supir.hargaSewa | currency:'IDR' }}
+						</span>
+					</mat-grid-tile-header>
+					<div class='mat-grid-tile-content' style='padding: 8px'>
+						<img [src]='supir.image' style="max-height: 200px; max-width: 90%; margin-left: 5%">
+						<p>
+							<br>
+							No. Seluler		:	{{ supir.noHP }}	<br>
+							Jenis Kelamin	:	{{ supir.jk }}		<br>
+							E-Mail			:	{{ supir.email }}	<br>
+						</p>
+					</div>
+					<mat-grid-tile-footer>
+						<h3 mat-line></h3>
+						<a><button (click)='pindah(supir.id)' color='primary' mat-raised-button style="color: #FFF !important" type="button">Sewa</button></a>
+					</mat-grid-tile-footer>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-card-content>
+	</mat-card>
+</div>

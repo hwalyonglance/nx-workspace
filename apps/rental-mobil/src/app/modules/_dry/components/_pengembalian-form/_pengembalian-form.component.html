@@ -1,0 +1,50 @@
+<div class='pp2-su-pengembalianForm'>
+	<pp2-dry-container #C_Pp2_Dry_Container>
+		<div class="container pp2-content margin-auto">
+			<form [formGroup]='pengembalianForm' fxLayout='column' (submit)='pp2OnSubmit($event, pengembalianForm.value)' fxLayoutAlign='center center'>
+				<mat-card class='full-width'>
+					<mat-card-header>
+						<mat-card-title>Pengembalian</mat-card-title>
+					</mat-card-header>
+					<mat-card-content fxLayoutAlign='center center'>
+						<div class='pp2-dry-pengembalianForm-container' fxLayout='column'>
+							<div fxFlex>
+								<mat-form-field class='full-width'>
+									<input disabled matInput name='' type="text" placeholder="Nama Penyewa" >
+								</mat-form-field>
+							</div>
+							<div fxFlex>
+								<mat-form-field class='full-width'>
+									<input disabled matInput name='' type="text" placeholder="Nama Mobil" >
+								</mat-form-field>
+							</div>
+							<div fxFlex>
+								<mat-form-field class='full-width'>
+									<input disabled matInput name='' type="text" placeholder="Nama Supir" >
+								</mat-form-field>
+							</div>
+							<div fxFlex>
+								<mat-form-field class='full-width'>
+									<input disabled matInput name='' type="text" placeholder="Periode" >
+								</mat-form-field>
+							</div>
+							<div fxFlex>
+								<mat-form-field class='full-width'>
+									<input formControlName='kondisi' matInput name='' type="text" placeholder="Nama" required>
+								</mat-form-field>
+							</div>
+							<div fxFlex>
+								<mat-form-field class='full-width'>
+									<input formControlName='denda' matInput name='' type="text" placeholder="Nama" required>
+								</mat-form-field>
+							</div>
+						</div>
+					</mat-card-content>
+					<mat-card-actions>
+						<button mat-button type='submit'>Save</button>
+					</mat-card-actions>
+				</mat-card>
+			</form>
+		</div>
+	</pp2-dry-container>
+</div>

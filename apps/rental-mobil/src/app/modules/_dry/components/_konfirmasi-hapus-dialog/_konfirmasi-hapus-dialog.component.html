@@ -1,0 +1,8 @@
+<mat-toolbar color='primary'>
+	Hapus {{ _dialogData.jenis }} ini?
+</mat-toolbar>
+<div class='pad-8px' fxLayout>
+	<span fxFlex></span>
+	<button (click)='$btn$.next("O")' color='warn' fxFlex mat-button>Hapus</button>
+	<button (click)='$btn$.next("X")' color='accent' fxFlex mat-raised-button>Batal</button>
+</div>

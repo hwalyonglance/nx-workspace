@@ -1,0 +1,1 @@
+"../../../../node_modules/.bin/node-sass" grid.scss grid.css && "C:\\Users\\RusmanWahab\\AppData\\Roaming\\npm\\uglifycss.cmd" grid.css > grid.min.css

@@ -1,1 +1,161 @@
 /* You can add global styles to this file, and also import other style files */
+// @import 'assets/scss/custom-theme.scss';
+// @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~font-awesome/css/font-awesome.min.css';
+@import 'assets/materialize/materialize.min.css';
+@import './assets/iconfont/material-icons.css';
+@import '~animate.css/animate.min.css';
+
+body {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.hide {
+	display: none !important;
+}
+.pointer {
+	cursor: pointer !important;
+}
+button {
+	box-sizing: border-box !important;
+}
+button:focus {
+	border: 2px solid #2196f3;
+	color: #000;
+}
+button[disabled] {
+	cursor: url(./assets/Cursors/cursor_click_x.cur) !important;
+}
+button a {
+	color: inherit !important;
+}
+.mat-card {
+	border-radius: 0 !important;
+	box-sizing: border-box !important;
+	.mat-card-content {
+		border-radius: 0 !important;
+		box-sizing: border-box !important;
+	}
+}
+.mat-drawer{
+	border-radius: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.mat-toolbar{
+	border-radius: 0 !important;
+	margin: 0 !important;
+	padding: 0 24px !important;
+}
+.mat-dialog-container {
+	padding: 0 !important;
+	overflow: unset !important;
+	max-width: 85vw !important;
+	.mat-card {
+		padding: 0;
+	}
+}
+
+.pad-l-255px {
+	padding-left: 255px;
+}
+.pad-r-255px {
+	padding-right: 255px;
+}
+.pad-s-255px {
+	padding: 0 255px;
+}
+
+.mat-sidenav{
+	width: 300px !important;
+	padding-top: 64px !important;
+}
+@media (max-width: 750px) {
+	.mat-sidenav {
+		padding-top: 56px !important;
+		width: 80vw !important;
+	}
+}
+// .mat-drawer-backdrop.mat-drawer-shown {
+// 	background-color: transparent !important;
+// 	z-index: -2000;
+// 	display: none;
+// }
+// @media (max-width: 750px) {
+// 	.mat-drawer-backdrop.mat-drawer-shown {
+// 		background-color: rgba(0, 0, 0, 0.6) !important;
+// 		z-index: 2000;
+// 		display: initial;
+// 		margin-left: 300px;
+// 	}
+// }
+
+.flex-auto {
+	flex: 1 1 auto;
+}
+.pp2-content {
+	margin: 64px 0;
+	padding: 0 24px;
+}
+h1 {
+	padding: 0 20px;
+	margin: 0 !important;
+}
+.margin-l-20px {
+	margin-left: 20px;
+}
+.as-center {
+	align-self: center;
+}
+.ac-center {
+	align-content: center;
+}
+.full-width {
+	width: calc(100% - 50px) !important;
+	padding: 0 25px;
+}
+.pad-8px{
+	padding: 8px !important;
+}
+
+.margin-auto{
+	margin: 64px auto;
+}
+.m24px{
+	margin:0 24px !important;
+}
+.m12px{
+	margin:0 12px !important;
+}
+.iil{
+	margin: 2px 8px 2px 0;
+	height: 40px;
+	width: 40px;
+	float: left;
+}
+.owit{
+	float: left;
+}
+.mat-toolbar a {
+	margin: none 10px !important;
+}
+.pp2----nav{
+	position: fixed;
+	z-index: 50000 !important;
+	top: 0;
+	left: 0;
+	width: 100vw;
+}
+.dm-container{
+	height: calc(100vh - 56px - 48px);
+	overflow-x: hidden;
+}
+@media (min-width: 600px) {
+	.dm-container{ height: calc(100vh - 64px - 48px) }
+}
+table.browser-default tr,
+table.browser-default td{
+	height: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}

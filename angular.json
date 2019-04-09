@@ -66,7 +66,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "rusmanwahab:build",
-            "open":true,
+            "open": true,
             "proxyConfig": "apps/rusmanwahab//proxy.conf.json"
           },
           "configurations": {
@@ -167,7 +167,7 @@
           "builder": "@nrwl/builders:node-execute",
           "options": {
             "buildTarget": "rusmanwahab-api:build",
-            "open":true
+            "open": true
           }
         },
         "lint": {
@@ -280,7 +280,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "pengolahan-nilai:build",
-            "open":true
+            "open": true
           },
           "configurations": {
             "production": {
@@ -407,7 +407,7 @@
           "options": {
             "browserTarget": "toko-buku:build",
             "proxyConfig": "apps/toko-buku//proxy.conf.json",
-            "open":true
+            "open": true
           },
           "configurations": {
             "production": {
@@ -532,7 +532,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "pengarsipan-surat:build",
-            "open":true
+            "open": true
           },
           "configurations": {
             "production": {
@@ -775,6 +775,64 @@
           "options": {
             "jestConfig": "apps/toko-buku-server/jest.config.js",
             "tsConfig": "apps/toko-buku-server/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "rental-mobil-server": {
+      "root": "apps/rental-mobil-server",
+      "sourceRoot": "apps/rental-mobil-server/src",
+      "projectType": "application",
+      "prefix": "rental-mobil-server",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/builders:node-build",
+          "options": {
+            "outputPath": "dist/apps/rental-mobil-server",
+            "main": "apps/rental-mobil-server/src/main.ts",
+            "tsConfig": "apps/rental-mobil-server/tsconfig.app.json",
+            "assets": [
+              "apps/rental-mobil-server/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/rental-mobil-server/src/environments/environment.ts",
+                  "with": "apps/rental-mobil-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/builders:node-execute",
+          "options": {
+            "buildTarget": "rental-mobil-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/rental-mobil-server/tsconfig.app.json",
+              "apps/rental-mobil-server/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/rental-mobil-server/jest.config.js",
+            "tsConfig": "apps/rental-mobil-server/tsconfig.spec.json"
           }
         }
       }

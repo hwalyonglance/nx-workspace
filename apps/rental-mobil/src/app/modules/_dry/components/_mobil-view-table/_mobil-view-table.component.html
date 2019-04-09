@@ -1,0 +1,167 @@
+<div class="pp2-dry-mobilViewTable container pp2-content margin-auto">
+	<mat-drawer-container>
+		<mat-drawer #C_Mat_Drawer align='end' mode='side' (open)='btnClose.focus()' style='width: 300px'>
+			<mat-toolbar color='primary'>
+				<span class='flex-auto'></span>
+				<button color='primary' mat-icon-button mat-raised-button matTooltip='Ubah Data Mobil' [routerLink]='"/pengurus/mobil/ubah/" + mobil.id'><mat-icon>mode_edit</mat-icon></button>
+				<button (click)='remove(mobil.id)' color='warn' mat-icon-button mat-raised-button matTooltip='Hapus Mobil'><mat-icon>delete</mat-icon></button>
+				<button #btnClose (click)='C_Mat_Drawer.close()' color='accent' mat-icon-button mat-raised-button matTooltip='Tutup'><mat-icon>close</mat-icon></button>
+			</mat-toolbar>
+			<table class='browser-default'>
+				<tr>
+					<td colspan="2">
+						<img [src]="mobil.image" style='max-height: 150px;width: 100%'>
+					</td>
+				</tr>
+				<tr>
+					<td>Nama</td>
+					<td>{{ mobil.nama }}</td>
+				</tr>
+				<tr>
+					<td>Plat Nomor</td>
+					<td>{{ mobil.platNo }}</td>
+				</tr>
+				<tr>
+					<td>Kursi</td>
+					<td>{{ mobil.kursi }}</td>
+				</tr>
+				<tr>
+					<td>Bensin</td>
+					<td>{{ mobil.bensin }}</td>
+				</tr>
+				<tr>
+					<td>Sewa/Hari</td>
+					<td>{{ mobil.hargaSewa | currency:'IDR' }}</td>
+				</tr>
+				<tr>
+					<td>Kondisi</td>
+					<td>{{ mobil.kondisi }}</td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td>{{ mobil._status }}</td>
+				</tr>
+			</table>
+		</mat-drawer>
+		<mat-drawer-content>
+			<mat-card>
+				<mat-card-content>
+					<mat-toolbar color='primary'>
+						<mat-form-field class='full-width' color='accent' floatPlaceholder="never">
+							<input #filter matInput placeholder="Cari Mobil">
+						</mat-form-field>
+					</mat-toolbar>
+					<mat-table #table [dataSource]="mobilMatTableDataSource" matSort>
+						<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+						<mat-row *matRowDef="let row; columns: displayedColumns;" (click)='btnClose.focus();C_Mat_Drawer.open();mobil = row' [style.borderBottomColor]="expandedMobil == row ? 'transparent' : ''"></mat-row>
+						<!-- Detail Column -->
+						<ng-container matColumnDef="details">
+							<mat-cell *matCellDef="let row">
+								<ng-container *ngIf="wasExpanded.has(row.data)">
+									<table>
+										<colgroup width='150px'></colgroup>
+										<tr>
+											<td colspan="2" style="padding: 5px;">
+												<img [src]="row.data.image" style='max-width: 550px;align-self: center; justify-self: center;'>
+											</td>
+										</tr>
+										<tr>
+											<td>Nama</td>
+											<td>{{ row.data.nama }}</td>
+										</tr>
+										<tr>
+											<td>Plat Nomor</td>
+											<td>{{ row.data.platNo }}</td>
+										</tr>
+										<tr>
+											<td>Jumlah Kursi</td>
+											<td>{{ row.data.kursi }}</td>
+										</tr>
+										<tr>
+											<td>Bahan bakar</td>
+											<td>{{ row.data.bensin }}</td>
+										</tr>
+										<tr>
+											<td>Harga Sewa per Hari</td>
+											<td>{{ row.data.hargaSewa | currency:'IDR' }}</td>
+										</tr>
+										<tr>
+											<td>Kondisi</td>
+											<td>{{ row.data.kondisi }}</td>
+										</tr>
+										<tr>
+											<td>Status</td>
+											<td>{{ row.data._status }}</td>
+										</tr>
+									</table>
+								</ng-container>
+							</mat-cell>
+						</ng-container>
+
+						<!-- Column Definition: id -->
+						<ng-container matColumnDef="id">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: nama -->
+						<ng-container matColumnDef="nama">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Nama </mat-header-cell>
+							<mat-cell *matCellDef="let row;"> {{row.nama}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: platNo -->
+						<ng-container matColumnDef="platNo">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Plat Nomor </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.platNo}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: kursi -->
+						<ng-container matColumnDef="kursi">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Kursi </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.kursi}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: bensin -->
+						<ng-container matColumnDef="bensin">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Bahan Bakar </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.bensin}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: hargaSewa -->
+						<ng-container matColumnDef="hargaSewa">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Sewa per hari </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.hargaSewa}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: kondisi -->
+						<ng-container matColumnDef="kondisi">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Kondisi </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.kondisi}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: image -->
+						<ng-container matColumnDef="image">
+							<mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+							<mat-cell *matCellDef="let row">
+								<img [src]="row.image" style='max-height: 50px;max-width: 50px;align-self: center; justify-self: center;'>
+							</mat-cell>
+						</ng-container>
+						<!-- Column Definition: _status -->
+						<ng-container matColumnDef="_status">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row._status}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: action -->
+						<ng-container matColumnDef="action">
+							<mat-header-cell *matHeaderCellDef> Tindakan </mat-header-cell>
+							<mat-cell *matCellDef="let row">
+								<!-- <button (click)="rowClick(row)" color='primary' mat-raised-button mat-icon-button matTooltip='Detail Mobil'>
+									<mat-icon>details</mat-icon>
+								</button> -->
+								<button color='accent' mat-raised-button mat-icon-button>
+									<mat-icon>mode_edit</mat-icon>
+								</button>
+								
+							</mat-cell>
+						</ng-container>
+					</mat-table>
+					<mat-paginator color='accent' #paginator [length]="length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+				</mat-card-content>
+			</mat-card>
+		</mat-drawer-content>
+	</mat-drawer-container>
+</div>

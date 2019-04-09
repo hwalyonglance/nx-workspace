@@ -1,0 +1,60 @@
+<div class='pp2-pengurus-supirForm container pp2-content margin-auto'>
+	<form [formGroup]='supirForm' fxLayout='column' fxLayoutAlign='center center' (submit)='pp2OnSubmit($event, supirForm.value)'>
+		<mat-card class='full-width'>
+			<mat-card-header>
+				<mat-card-title>{{ label }}</mat-card-title>
+			</mat-card-header>
+			<mat-card-content fxLayoutAlign='center center'>
+				<div class="pp2-dry-supirForm-container" fxLayout='column' style='height: 100%;width: 100%;'>
+					<div fxFlex>
+						<ng-content></ng-content>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<pp2-dry-fileImage #fi (change)='$_pp2Upload.detectFiles($event)'></pp2-dry-fileImage>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='nama' matInput name='nama' placeholder="Nama" required>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='noSIM' matInput name='noSIM' placeholder="No. SIM" required type='number'>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='noHP' matInput name='noTelp' placeholder="No Telp/HP" required type='tel'>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<mat-select formControlName='jk' name='jk' placeholder='Jenis Kelamin' required>
+								<mat-option value='Laki-Laki'>Laki-Laki</mat-option>
+								<mat-option value='Perempuan'>Perempuan</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='hargaSewa' min='0' matInput name='sewa_per_hari' step='10000' type="number" placeholder="Harga Sewa per Hari (Rp.)" required>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<textarea formControlName='alamat' matInput matTextareaAutosize matAutosizeMaxRows='8' matAutosizeMinRows='2' name='alamat' placeholder="Alamat" required></textarea>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='email' matInput type="email" name='email' placeholder="E-mail">
+						</mat-form-field>
+					</div>
+				</div>
+			</mat-card-content>
+			<mat-card-actions [fxHide]='sembunyikan'>
+				<button [disabled]='disable' mat-button type='submit'>Save</button>
+			</mat-card-actions>
+		</mat-card>
+	</form>
+</div>

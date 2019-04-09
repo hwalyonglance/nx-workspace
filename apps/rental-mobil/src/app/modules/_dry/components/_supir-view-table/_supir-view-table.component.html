@@ -1,0 +1,183 @@
+<div class="pp2-dry-supirViewTable container pp2-content margin-auto">
+	<mat-drawer-container>
+		<mat-drawer #C_Mat_Drawer align='end' mode='side' (open)='btnClose.focus()' style='width: 300px'>
+			<mat-toolbar color='primary'>
+				<span class='flex-auto'></span>
+				<button color='primary' mat-icon-button mat-raised-button matTooltip='Ubah Data Supir' [routerLink]='"/pengurus/supir/ubah/" + supir.id'><mat-icon>mode_edit</mat-icon></button>
+				<button (click)='remove(supir.id)' color='warn' mat-icon-button mat-raised-button matTooltip='Hapus Supir'><mat-icon>delete</mat-icon></button>
+				<button #btnClose (click)='C_Mat_Drawer.close()' color='accent' mat-icon-button mat-raised-button matTooltip='Tutup'><mat-icon>close</mat-icon></button>
+			</mat-toolbar>
+			<table class='browser-default'>
+				<tr>
+					<td colspan="2" style="padding: 5px;">
+						<img [src]="supir.image" style='max-height: 360;width: 100%;'>
+					</td>
+				</tr>
+				<tr>
+					<td>Nama</td>
+					<td>{{ supir.nama }}</td>
+				</tr>
+				<tr>
+					<td>No. SIM</td>
+					<td>{{ supir.noSIM }}</td>
+				</tr>
+				<tr>
+					<td>No. HP</td>
+					<td>{{ supir.noHP }}</td>
+				</tr>
+				<tr>
+					<td>Jenis Kelamin</td>
+					<td>{{ supir.jk }}</td>
+				</tr>
+				<tr>
+					<td>Harga Sewa</td>
+					<td>{{ supir.hargaSewa | currency:'IDR' }}</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td>{{ supir.email || '---' }}</td>
+				</tr>
+				<tr>
+					<td>Alamat</td>
+					<td>{{ supir.alamat }}</td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td>{{ supir._status }}</td>
+				</tr>
+			</table>
+		</mat-drawer>
+		<mat-drawer-content>
+			<mat-card>
+				<mat-card-content>
+					<mat-toolbar color='primary'>
+						<mat-form-field class='full-width' color='accent' floatPlaceholder="never">
+							<input matInput #filter placeholder="Cari Supir">
+						</mat-form-field>
+					</mat-toolbar>
+					<!-- <mat-table #table [dataSource]="dataSourceWithDetails" matSort> -->
+					<mat-table #table [dataSource]="supirMatTableDataSource" matSort>
+						<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+						<mat-row *matRowDef="let row; columns: displayedColumns;" (click)='btnClose.focus();C_Mat_Drawer.open();supir = row' [style.borderBottomColor]="expandedSupir == row ? 'transparent' : ''"></mat-row>
+						<!-- Detail Column -->
+						<!-- <ng-container matColumnDef="details">
+							<mat-cell *matCellDef="let row">
+								<ng-container *ngIf="wasExpanded.has(row.data)">
+									<table class='browser-default'>
+										<colgroup width='150px'></colgroup>
+										<tr>
+											<td colspan="2" style="padding: 5px;">
+												<img [src]="row.data.image" style='max-width: 550px;align-self: center; justify-self: center;'>
+											</td>
+										</tr>
+										<tr>
+											<td>Nama</td>
+											<td>{{ row.data.nama }}</td>
+										</tr>
+										<tr>
+											<td>No. SIM</td>
+											<td>{{ row.data.noSIM }}</td>
+										</tr>
+										<tr>
+											<td>No. HP</td>
+											<td>{{ row.data.noHP }}</td>
+										</tr>
+										<tr>
+											<td>Jenis Kelamin</td>
+											<td>{{ row.data.jk }}</td>
+										</tr>
+										<tr>
+											<td>Harga Sewa</td>
+											<td>{{ row.data.hargaSewa | currency:'IDR' }}</td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td>{{ row.data.email }}</td>
+										</tr>
+										<tr>
+											<td>Alamat</td>
+											<td>{{ row.data.alamat }}</td>
+										</tr>
+										<tr>
+											<td>Status</td>
+											<td>{{ row.data._status }}</td>
+										</tr>
+									</table>
+								</ng-container>
+							</mat-cell>
+						</ng-container> -->
+
+						<!-- Column Definition: id -->
+						<ng-container matColumnDef="id">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: nama -->
+						<ng-container matColumnDef="nama">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Nama </mat-header-cell>
+							<mat-cell *matCellDef="let row;"> {{row.nama}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: noSim -->
+						<ng-container matColumnDef="noSim">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> No.SIM </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.noSIM}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: noHP -->
+						<ng-container matColumnDef="noHP">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> No.HP </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.noHP}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: jk -->
+						<ng-container matColumnDef="jk">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> JK </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.jk}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: hargaSewa -->
+						<ng-container matColumnDef="hargaSewa">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Harga Sewa </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.hargaSewa}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: alamat -->
+						<ng-container matColumnDef="alamat">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Alamat </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.alamat}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: email -->
+						<ng-container matColumnDef="email">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: image -->
+						<ng-container matColumnDef="image">
+							<mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+							<mat-cell *matCellDef="let row">
+								<img [src]="row.image" style='max-height: 50px;max-width: 50px;align-self: center; justify-self: center;'>
+							</mat-cell>
+						</ng-container>
+						<!-- Column Definition: _status -->
+						<ng-container matColumnDef="_status">
+							<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+							<mat-cell *matCellDef="let row"> {{row._status}} </mat-cell>
+						</ng-container>
+						<!-- Column Definition: action -->
+						<ng-container matColumnDef="action">
+							<mat-header-cell *matHeaderCellDef> Tindakan </mat-header-cell>
+							<mat-cell *matCellDef="let row">
+								<button (click)="rowClick(row)" color='primary' mat-raised-button mat-icon-button matTooltip='Detail Supir'>
+									<mat-icon>details</mat-icon>
+								</button>
+								<button color='accent' mat-raised-button mat-icon-button matTooltip='Ubah Data Supir' [routerLink]='"/pengurus/supir/ubah/" + row.id'>
+									<mat-icon>mode_edit</mat-icon>
+								</button>
+								<button (click)='remove(row.id)' color='warn' mat-raised-button mat-icon-button matTooltip='Hapus Supir'>
+									<mat-icon>delete</mat-icon>
+								</button>
+							</mat-cell>
+						</ng-container>
+					</mat-table>
+					<mat-paginator color='accent' #paginator [length]="length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+				</mat-card-content>
+			</mat-card>
+		</mat-drawer-content>
+	</mat-drawer-container>
+</div>

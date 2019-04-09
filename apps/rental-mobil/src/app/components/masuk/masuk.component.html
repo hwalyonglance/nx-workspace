@@ -1,0 +1,30 @@
+<div class='pp2-masuk-pengguna'>
+	<pp2--nav #C_Pp2__Nav></pp2--nav>
+	<pp2-dry-container #C_Pp2_Dry_Container>
+		<div class="container pp2-content margin-auto">
+			<form [formGroup]='masukForm' (ngSubmit)='onSubmit(masukForm.value)'>
+				<mat-card>
+					<mat-card-header>
+						<mat-card-title>Masuk</mat-card-title>
+						<mat-card-subtitle>{{ level }}</mat-card-subtitle>
+					</mat-card-header>
+					<mat-card-content fxLayout='column'>
+						<div fxFlex>
+							<mat-input-container class='full-width'>
+								<input formControlName='username' matInput name='username' placeholder='Username' (keypress)='onKeyPress($event)' (paste)='onPaste($event)' required>
+							</mat-input-container>
+						</div>
+						<div fxFlex>
+							<mat-input-container class='full-width'>
+								<input formControlName='password' matInput name='password' type='password' placeholder='Password' (keypress)='onKeyPress($event)' (paste)='onPaste($event)' required>
+							</mat-input-container>
+						</div>
+					</mat-card-content>
+					<mat-card-actions style='padding: 0 30px'>
+						<button mat-raised-button type='submit' color='primary' [disabled]='!masukForm.valid'>Submit</button>
+					</mat-card-actions>
+				</mat-card>
+			</form>
+		</div>
+	</pp2-dry-container>
+</div>

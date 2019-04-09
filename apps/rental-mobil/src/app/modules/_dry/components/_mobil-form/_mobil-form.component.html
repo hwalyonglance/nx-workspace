@@ -1,0 +1,56 @@
+<div class='pp2-su-mobilForm container pp2-content margin-auto'>
+	<form [formGroup]='mobilForm' fxLayout='column' fxLayoutAlign='center center'>
+		<mat-card class='full-width'>
+			<mat-card-header>
+				<mat-card-title>{{ label }}</mat-card-title>
+			</mat-card-header>
+			<mat-card-content fxLayoutAlign='center center'>
+				<div class="pp2-dry-mobilForm-container" fxLayout='column'>
+					<div fxFlex>
+						<ng-content></ng-content>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<pp2-dry-fileImage #fi (change)='$_pp2Upload.detectFiles($event)'></pp2-dry-fileImage>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='nama' matInput name='nama_mobil' placeholder="Nama Mobil" required type="text">
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='platNo' matInput name='plat_nomor' placeholder="Plat Nomor" required type="text">
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='kursi' matInput name='jumlah_kursi' placeholder="Jumlah Kursi" required step='1' type="number">
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<mat-select formControlName='bensin' name='bahan_bakar' placeholder='Bahan Bakar' required>
+								<mat-option value='Pertamax'>Pertamax</mat-option>
+								<mat-option value='Premium'>Premium</mat-option>
+								<mat-option value='Pertalite'>Pertalite</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='hargaSewa' matInput name='sewa_per_hari' placeholder="Sewa perhari" required step='5000' type="number">
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<textarea formControlName='kondisi' matInput MatTextareaAutosize name='kondisi' placeholder='Kondisi Kendaraan'></textarea>
+						</mat-form-field>
+					</div>
+				</div>
+			</mat-card-content>
+			<mat-card-actions [fxHide]='sembunyikan'>
+				<button (click)='pp2OnSubmit($event, mobilForm.value)' [disabled]='disable' mat-button type='button'>Save</button>
+			</mat-card-actions>
+		</mat-card>
+	</form>
+</div>

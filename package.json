@@ -32,6 +32,7 @@
     "npm": "6.x"
   },
   "dependencies": {
+    "express": "latest",
     "@angular/animations": "latest",
     "@angular/cdk": "latest",
     "@angular/common": "latest",
@@ -64,9 +65,9 @@
     "@nguniversal/module-map-ngfactory-loader": "latest",
     "@tinymce/tinymce-angular": "latest",
     "@google-cloud/storage": "^0.4.0",
-		"child-process-promise": "^2.2.0",
-		"mkdirp": "^0.5.1",
-		"mkdirp-promise": "^4.0.0",
+    "child-process-promise": "^2.2.0",
+    "mkdirp": "^0.5.1",
+    "mkdirp-promise": "^4.0.0",
     "angular2-moment": "latest",
     "angulartics2": "latest",
     "bufferutil": "latest",
@@ -78,7 +79,6 @@
     "debug": "latest",
     "dotenv": "latest",
     "ejs": "latest",
-    "express": "latest",
     "express-brute": "latest",
     "express-rate-limit": "latest",
     "faker": "latest",

@@ -1,0 +1,66 @@
+<div class='pp2-su-penggunaForm container pp2-content margin-auto'>
+	<form [formGroup]='penggunaForm' fxLayout='column' (submit)='pp2OnSubmit($event, penggunaForm.value)' fxLayoutAlign='center center'>
+		<mat-card class='full-width'>
+			<mat-card-header>
+				<mat-card-title>{{ label }}</mat-card-title>
+			</mat-card-header>
+			<mat-card-content fxLayoutAlign='center center'>
+				<div class='pp2-dry-penggunaForm-container' fxLayout='column'>
+					<div fxFlex>
+						<ng-content></ng-content>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<pp2-dry-fileImage #fi (change)='$_pp2Upload.detectFiles($event)'></pp2-dry-fileImage>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='nama' matInput name='nama' type="text" placeholder="Nama" required>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='username' matInput name='username' type="text" placeholder="Username" required>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='password' matInput name='password' placeholder="Password" required [type]='pt'>
+							<mat-hint align='end' class='pointer' (click)='pt = pt === "password" ? "text" : "password" '>{{ pt === "password" ? "Lihat" : "Sembunyikan" }} Password</mat-hint>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='noKTP' matInput name='noKTP' placeholder="Nomor KTP" required>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='noHP' matInput name='noSeluler' placeholder="Nomor Seluler" required type='tel'>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<mat-select formControlName='jk' name='jk' placeholder='Jenis Kelamin' required>
+								<mat-option value='Laki-Laki'>Laki-Laki</mat-option>
+								<mat-option value='Perempuan'>Perempuan</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<input formControlName='email' matInput name='email' type="email" placeholder="E-Mail" required>
+						</mat-form-field>
+					</div>
+					<div fxFlex [fxHide]='sembunyikan'>
+						<mat-form-field class='full-width'>
+							<textarea formControlName='alamat' matInput matTextareaAutosize matTextareaMinRows='2' name='alamat' placeholder="Alamat" required></textarea>
+						</mat-form-field>
+					</div>
+				</div>
+			</mat-card-content>
+			<mat-card-actions [fxHide]='sembunyikan'>
+				<button [disabled]='disable' mat-button type='submit'>Save</button>
+			</mat-card-actions>
+		</mat-card>
+	</form>
+</div>
